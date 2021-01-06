@@ -1,9 +1,11 @@
 language: ruby
-rvm: 
+rbenv: 
   - 2.5.3
-  - jruby
 addons:
   postgresql: 9.6
-scripts:
+script:
   - bundle exec rails db:{create,migrate} RAILS_ENV=test
   - bundle exec rspec
+deploy:
+  provider: heroku
+  api_key: $HEROKU_API_KEY
