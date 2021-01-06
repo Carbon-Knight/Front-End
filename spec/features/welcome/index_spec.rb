@@ -5,8 +5,15 @@ describe "Welcome Page" do
     it "Welcomes visitor w/ a login" do
       visit root_path
 
-      expect(page).to have("Welcome")
+      expect(page).to have_content("Welcome")
       expect(page).to have_link("Login with Google")
     end
+
+    it "Logs in/ registers with google OAuth"
+
+    visit root_path
+    click_link("Login with Google")
+
+    
   end
 end
