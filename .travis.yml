@@ -1,5 +1,5 @@
 language: ruby
-rbenv: 
+rbenv:
   - 2.5.3
 addons:
   postgresql: 9.6
