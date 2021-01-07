@@ -32,13 +32,11 @@ describe "Welcome Page" do
     end
 
     it "Logs in/ registers with google OAuth" do
-      #browser testing
-
-      #stub_omniauth
 
       visit root_path
       click_link "Login with Google"
       expect(current_path).to eq(dashboard_path)
+      
     end
   end
 end
