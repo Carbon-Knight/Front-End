@@ -8,7 +8,18 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
-
+    <nav class="nav">
+      <% if current_user %>
+      <a class="nav-link" href="#">Home</a>
+      <a class="nav-link" href="#">Friends</a>
+      <a class="nav-link active" href="#">Carbon Calculator</a>
+      <a class="nav-link" href="#">Offsets</a>
+      <a class="nav-link" href="#">Resources</a>
+      <a class="nav-link" href="#">Log Out</a>
+    <% else !current_user %>
+      <a class="nav-link" href="#">Log In</a>
+    <% end %>
+  </nav>
   <body>
     <%= yield %>
   </body>
