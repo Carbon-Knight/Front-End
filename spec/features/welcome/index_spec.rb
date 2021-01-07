@@ -4,7 +4,7 @@ describe "Welcome Page" do
   describe "Index" do
     before :each do
       OmniAuth.config.test_mode = true
-      OmniAuth.config.mock_auth[:google] = OmniAuth::AuthHash.new(
+      OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(
         {"provider"=>"google_oauth2",
           "uid"=>"7",
           "info"=>
@@ -38,7 +38,7 @@ describe "Welcome Page" do
 
       visit root_path
       click_link "Login with Google"
-
+      expect(current_path).to eq(dashboard_path)
     end
   end
 end
