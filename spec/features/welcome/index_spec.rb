@@ -9,11 +9,11 @@ describe "Welcome Page" do
       expect(page).to have_link("Login with Google")
     end
 
-    it "Logs in/ registers with google OAuth"
+    it "Logs in/ registers with google OAuth" do
+      #stub_omniauth
+      visit root_path
+      click_link("Login with Google")
 
-    visit root_path
-    click_link("Login with Google")
-
-    
+    end
   end
 end
