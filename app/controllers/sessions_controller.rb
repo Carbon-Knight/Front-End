@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
 
   def create
     user_data = request.env['omniauth.auth']
-    binding.pry
     token = user_data[:credentials][:token]
     uid = user_data[:uid]
     name = user_data[:info][:name]
@@ -13,7 +12,6 @@ class SessionsController < ApplicationController
     user.email = email
     user.token = token
     user.save
-binding.pry
 
     session[:user_id] = user.id
     redirect_to dashboard_path
