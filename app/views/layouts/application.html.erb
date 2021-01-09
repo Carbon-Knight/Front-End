@@ -10,14 +10,14 @@
   </head>
     <nav class="nav">
       <% if current_user %>
-      <a class="nav-link" href="#">Home</a>
-      <a class="nav-link" href="#">Friends</a>
-      <a class="nav-link active" href="#">Carbon Calculator</a>
-      <a class="nav-link" href="#">Offsets</a>
-      <a class="nav-link" href="#">Resources</a>
-      <a class="nav-link" href="#">Log Out</a>
+      <a class="nav-link" href="/dashboard">Home</a>
+      <a class="nav-link" href="/friends">Friends</a>
+      <a class="nav-link active" href="/carbon_calc">Carbon Calculator</a>
+      <a class="nav-link" href="/offsets">Offsets</a>
+      <a class="nav-link" href="/resources">Resources</a>
+      <a class="nav-link" href="/log_out">Log Out</a>
     <% else !current_user %>
-      <a class="nav-link" href="#">Log In</a>
+      <a class="nav-link" href="/auth/google_oauth2">Log In</a>
     <% end %>
   </nav>
   <body>
