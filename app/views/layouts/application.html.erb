@@ -10,15 +10,20 @@
   </head>
     <nav class="nav">
       <% if current_user %>
-        <a class="nav-link" href="#">Home</a>
-        <a class="nav-link" href="#">Friends</a>
-        <a class="nav-link active" href="#">Carbon Calculator</a>
-        <a class="nav-link" href="#">Offsets</a>
-        <a class="nav-link" href="#">Resources</a>
-        <a class="nav-link" href="/logout">Log Out</a>
+        <a class="nav-link" href="/dashboard">Home</a>
+        <a class="nav-link" href="/friends">Friends</a>
+        <a class="nav-link active" href="/carbon_calc">Carbon Calculator</a>
+        <a class="nav-link" href="/offsets">Offsets</a>
+        <a class="nav-link" href="/resources">Resources</a>
+        <a class="nav-link" href="/log_out">Log Out</a>
       <% end %>
   </nav>
   <body>
+    <% flash.each do |name, msg| %>
+      <div class= "<%=name%>-flash">
+        <p><%= msg %></p>
+      </div>
+   <% end %>
     <%= yield %>
   </body>
 </html>

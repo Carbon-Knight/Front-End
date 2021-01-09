@@ -13,4 +13,10 @@ class SessionsController < ApplicationController
     redirect_to dashboard_path
   end
 
+  def destroy
+    session.delete(:user_id)
+    flash[:success] = 'You are now logged out!'
+
+    redirect_to root_path
+  end
 end
