@@ -6,6 +6,8 @@ require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'simplecov'
+require 'webmock/rspec'
+
 SimpleCov.start
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -75,11 +77,10 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-
-VCR.configure do |config|
-  config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-  config.hook_into :webmock
-  config.configure_rspec_metadata!
-  config.default_cassette_options = { re_record_interval: 30.days }
-  config.allow_http_connections_when_no_cassette = true
-end 
+# VCR.configure do |config|
+#   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+#   config.hook_into :webmock
+#   config.configure_rspec_metadata!
+#   config.default_cassette_options = { re_record_interval: 30.days }
+#   config.allow_http_connections_when_no_cassette = true
+# end 
