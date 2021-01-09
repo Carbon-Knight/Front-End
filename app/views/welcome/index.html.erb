@@ -1,6 +1,7 @@
-<h1>Welcome to CarbonKingh</h1>
-<%= link_to 'Login with Google', "/auth/google_oauth2" %>
+<h1>Welcome to CarbonKnight</h1>
 
-<h3>
-  <small class="text-muted">CarbonKight is a way for you to track your carbon footprint over time</small>
-</h3>
+<% if !current_user %>
+  <%= link_to 'Login with Google', "/auth/google_oauth2" %>
+<% end %>
+
+<h3>CarbonKight is a way for you to track your carbon footprint over time</h3>
