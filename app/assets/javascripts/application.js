@@ -11,8 +11,5 @@
 // about supported directives.
 //
 //= require jquery3
-//= require jquery_ujs
-//= require_tree .
-
-//= require chartkick
-//= require Chart.bundle
+//= require popper
+//= require bootstrap-sprockets
