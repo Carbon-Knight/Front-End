@@ -2,18 +2,18 @@ require 'rails_helper'
 
 describe CarService do 
   let(:url) { 'http://localhost:3000/graphql' }
-  let(:client) { Graphlient::Client.new(ENV['HOST_URL'], schema_path: 'spec/support/fixtures/graphql_schema.json') }
+  # let(:client) { Graphlient::Client.new(ENV['HOST_URL'], schema_path: 'spec/support/fixtures/graphql_schema.json') }
   let(:query) do 
     <<~GRAPHQL
-      mutation do 
+      mutation {
         createUserCar(input: {
           userId: 1, make: "Toyota", model: "Four Runner", year: "2000", mpg: 20, fuelType: "gasoline"
-        }) do 
+        }) {
           car {
-            user_id
+            userId
           }
-        end
-      end
+        }
+      }
     GRAPHQL
   end
 
@@ -29,39 +29,27 @@ describe CarService do
     }.to_json
   end
 
-  before do 
-    stub_request(:post, url).to_return(
-      status: 200, 
-      body: json_response
-    )
-  end
+  # before do 
+  #   stub_request(:post, url).to_return(
+  #     status: 200, 
+  #     body: json_response
+  #   )
+  # end
 
   it 'returns parsed JSON data for a user\'s new car' do 
-    user = create(:user)
+    current_user = create(:user)
 
-    new_car = {
-      :make=>"Ford", 
+    car_params = {
+      :make=>"Toyota", 
       :model=>"Mustang", 
       :year=>"2013", 
-      :mpg=>"24", 
+      :fuel_efficiency=>"24", 
       :fuel_type=>"Gasoline"
     }
 
-    response = client.query(query)
+    response = CarService.new_car(car_params, current_user)
+
     require 'pry'; binding.pry
-    # ["data"]["createUserCar"]["car"]
-    expect(result).to be_a(Hash)
 
-    expect(result).to have_key("make")
-    expect(result["make"]).to be_a(String)
-
-    expect(result).to have_key("model")
-    expect(result["model"]).to be_a(String)
-
-    expect(result).to have_key("year")
-    expect(result["year"]).to be_a(Integer)
-
-    expect(result).to have_key("mpg")
-    expect(result["mpg"]).to be_a(Integer)
   end
 end
