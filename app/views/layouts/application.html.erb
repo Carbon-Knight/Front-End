@@ -8,22 +8,35 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
-     <nav class="nav">
+    <nav class="nav justify-content-center">
       <% if current_user %>
-      <a class="nav-link" href="#">Home</a>
-      <a class="nav-link" href="#">Friends</a>
-      <a class="nav-link active" href="/car_monthly_mileages/new">Carbon Calculator</a>
-      <a class="nav-link" href="#">Offsets</a>
-      <a class="nav-link" href="#">Resources</a>
-      <a class="nav-link" href="#">Log Out</a>
-    <% else !current_user %>
-      <a class="nav-link" href="#">Log In</a>
+      <div class="btn btn-outline-primary">
+        <a class="nav-link" href="/dashboard">Home</a>
+      </div>
+      <div class="btn btn-outline-primary">
+        <a class="nav-link" href="/friends">Friends</a>
+      </div>
+      <div class="btn btn-outline-primary">
+        <a class="nav-link active" href="/car_monthly_mileages/new">Carbon Calculator</a>
+      </div>
+      <div class="btn btn-outline-primary">
+        <a class="nav-link" href="/offsets">Offsets</a>
+      </div>
+      <div class="btn btn-outline-primary">
+        <a class="nav-link" href="/resources">Resources</a>
+      </div>
+      <div class="btn btn-outline-primary">
+        <a class="nav-link" href="/log_out">Log Out</a>
+      <% else !current_user %>
+      <a class="nav-link" href="/auth/google_oauth2">Login with Google</a>
     <% end %>
   </nav>
   <body>
-    <% flash.each do |type, message| %>
-      <p><%= message %></p>
-    <% end %>
+    <% flash.each do |name, msg| %>
+      <div class= "<%=name%>-flash">
+        <p><%= msg %></p>
+      </div>
+   <% end %>
     <%= yield %>
   </body>
 </html>
