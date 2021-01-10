@@ -2,11 +2,10 @@
 
 <%= link_to 'Add a Car', '/cars/new', method: :get %>
 
-<% if @cars %>
-
+<% unless @cars.empty? %>
   <section class='create-monthly-mileage'>
     <%= form_tag car_monthly_mileages_new_path, method: :post do %>
-      <%= select_tag(:cars, options_for_select([@cars.map {|car| car.year + ' ' + car.make + ' ' + car.model }], '1')) %>
+      <%= select_tag(:cars, options_for_select(@cars.map {|car| "#{car.year} #{car.make}  #{car.model} "}, '1')) %>
 
       <%= submit_tag 'Create Footprint for Month' %>
     <% end %>

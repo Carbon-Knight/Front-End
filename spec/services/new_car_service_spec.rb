@@ -22,7 +22,6 @@ describe CarService do
     }
 
     response = CarService.new_car(car_params, current_user)
-
     expect(response).to be_a(Hash)
 
     expect(response[:data]).to be_a(Hash)
