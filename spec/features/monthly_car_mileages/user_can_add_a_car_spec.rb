@@ -49,19 +49,19 @@ describe 'Add a Car Form Page' do
 
     end
 
-    xit "I cannot add a new car with missing fields" do
+    it "I cannot add a new car with missing fields" do
       visit cars_new_path
 
-      fill_in :model, with: "Mustang"
+      fill_in :model, with: 'Mustang'
       fill_in :year, with: 2013
-      fill_in :fuel_efficiency, with: 24
+      fill_in :mpg, with: 24
 
-      select "Gasoline", :from => "fuel_type"
+      select "gasoline", :from => 'fuel_type'
 
       click_button "Add Vehicle"
 
-      expect(current_path).to eq(cars_new_path)
-      expect(page).to have_content("Missing fields [ ]  required...")
+      expect(page).to have_content('Missing fields')
+      expect(page).to have_css('.new_car_form')
     end
   end
 end

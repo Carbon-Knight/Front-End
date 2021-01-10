@@ -2,21 +2,21 @@
   <h1>Add a New Vehicle</h1>
 </center>
 
-<section>
+<section class="new_car_form">
   <%= form_tag "/cars", method: :post do %>
     <%= label_tag :make %>
-    <%= text_field_tag :make %>
+    <%= text_field_tag :make, params[:make]%>
 
     <%= label_tag :model %>
-    <%= text_field_tag :model %>
+    <%= text_field_tag :model, params[:model] %>
 
     <%= label_tag :year %>
-    <%= number_field_tag :year, nil, placeholder: "input integer"  %>
+    <%= number_field_tag :year, params[:year], placeholder: "input integer"  %>
 
     <%= label_tag :fuel_efficiency %>
-    <%= number_field_tag :mpg, nil, placeholder: "input mpg as integer" %>
+    <%= number_field_tag :mpg, params[:mpg], placeholder: "input mpg as integer" %>
 
-    <%= select_tag(:fuel_type, options_for_select([['Select Fuel Type'], ['gasoline'],["diesel"]], '1'))%> <br>
+    <%= select_tag(:fuel_type, options_for_select([['Select Fuel Type'], ['gasoline'],["diesel"]], params[:fuel_type]))%> <br>
 
     <%= submit_tag 'Add Vehicle' %>
     <% end %>
