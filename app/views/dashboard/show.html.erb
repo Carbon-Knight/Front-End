@@ -1,12 +1,12 @@
-<body id="user-header">
+<section id="user-header">
   <h1 class="text-center">
-    <img src=<%=current_user.image%> alt="..." class="rounded-circle">
+    <img src=<%=current_user.image%> alt="No Image" class="rounded-circle">
     Sup <%= current_user.name %>!</h1>
   <div>
     <h3 class="text-center"> Your Carbon Footprint Is: </h3>
-</body>
+</section>
 
-<body id="charts">
+<section id="charts">
   <div id="color-key-left">
     
   </div>
@@ -18,9 +18,9 @@
   <div id="top-five-right">
     -- Top 5 on the right
   </div>
-</body>
+</section>
 
-<body id='user-carbon-data'>
+<section id='user-carbon-data'>
   <nav class="nav justify-content-center">
     <li class="btn btn-outline-primary">
       <a class="nav-link active" href="/leader_board">Visit Leader Board Here</a>
@@ -29,4 +29,4 @@
       <a class="nav-link" href="/carbon_calculator">Input Data Here</a>
     </li>
   </nav>
-</body>
+</section>
