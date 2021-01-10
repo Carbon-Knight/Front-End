@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'auth/google_oauth2/callback', to: 'sessions#create'
   get '/dashboard', to: 'dashboard#show'
 
+  get '/log_out', to: 'sessions#destroy'
+
   get '/car_monthly_mileages/new', to: 'car_monthly_mileages#new'
   get '/cars/new', to: 'car#new'
   post '/cars', to: 'car#create'
