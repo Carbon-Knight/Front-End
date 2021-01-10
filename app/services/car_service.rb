@@ -28,7 +28,7 @@ class CarService
         }
       }"
       make_request(query)[:data][:fetchUserCars]
-    end
+  end
 
   def self.make_request(query)
     header_hash = {
