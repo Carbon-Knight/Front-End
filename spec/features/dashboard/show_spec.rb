@@ -9,8 +9,28 @@ describe 'As a User' do
 
       visit dashboard_path
     end
-    it 'Has a users name on the page' do
+
+    it 'I see my name' do
       expect(page).to have_content('Mr. Fake')
+    end
+
+    it 'I see my previous footprint data and a button to input new data' do
+      expect(page).to have_content('Your Carbon Footprint Estimate:')
+      expect(page).to have_css('.footprint-graph')
+      within('.footprint-graph') do
+        # TODO:
+        # expect(page).to have month data etc etc
+        # mock a new footprint
+        # expect(page).to_not have_content('You have no footprint data')
+      end
+    end
+    it 'I see no previous data when I have not entered any data' do
+      expect(page).to have_content('Your Carbon Footprint Estimate:')
+      expect(page).to have_css('.footprint-graph')
+      within('.footprint-graph') do
+        expect(page).to have_content('You have no footprint data')
+        expect(page).to have_button('Input New Data')
+      end
     end
   end
 end
