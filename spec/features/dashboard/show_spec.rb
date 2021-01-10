@@ -39,5 +39,29 @@ describe 'As a User' do
         expect(page).to have_link('Input Data Here')
       end
     end
+
+    xit 'I see my previous footprint data' do
+      expect(page).to have_content('Your Carbon Footprint Is:')
+      expect(page).to have_css('#charts')
+      within('#charts') do
+        expect(page).to have_css('#graph')
+        within('#graph') do
+          # TODO:
+          # expect(page).to have month data etc etc
+          # mock a new footprint
+          # expect(page).to_not have_content('You have no footprint data')
+        end
+      end
+    end
+    it 'I see no previous data when I have not entered any data' do
+      expect(page).to have_content('Your Carbon Footprint Is:')
+      expect(page).to have_css('#charts')
+      within('#charts') do
+        expect(page).to have_css('#graph')
+        within('#graph') do
+          expect(page).to have_content('You have no footprint data')
+        end
+      end
+    end
   end
 end
