@@ -18,19 +18,17 @@ class CarService
   end
 
   def self.get_cars(current_user)
-    query = "{
-      fetchUserCars(userId: #{current_user}) {
-        userId
-        make
-        fuelType
-        model
-        year
-      }
-    }"
-    require "pry"; binding.pry
-
-    make_request(query)
-  end
+      query = "query {
+        fetchUserCars(userId: #{current_user.id}) {
+          make,
+          model,
+          year,
+          mpg,
+          fuelType
+        }
+      }"
+      make_request(query)[:data][:fetchUserCars]
+    end
 
   def self.make_request(query)
     header_hash = {
