@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'As a User' do
   describe 'When visiting the dashboard page' do
     before :each do
+      @user = create(:user, name: 'Mr. Fake')
       user_data = stub_omniauth
       @user = User.find_or_create_by(uid: user_data[:uid])
       @user.name = user_data[:info][:name]

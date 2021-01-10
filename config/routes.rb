@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   get '/log_out', to: 'sessions#destroy'
 
   get '/car_monthly_mileages/new', to: 'car_monthly_mileages#new'
-  get '/cars/new', to: 'car#new'
-  post '/cars', to: 'car#create'
+  get '/cars/new', to: 'cars#new'
+  post '/cars', to: 'cars#create'
 end
