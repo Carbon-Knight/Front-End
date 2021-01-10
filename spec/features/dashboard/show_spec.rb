@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'As a User' do
   describe 'When visiting the dashboard page' do
     before :each do
-      @user = User.create(name: 'Mr. Fake', email: 'fake@email.com', uid: '7', token: 'token')
+      @user = create(:user, name: 'Mr. Fake')
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 

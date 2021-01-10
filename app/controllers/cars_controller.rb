@@ -11,6 +11,6 @@ class CarsController < ApplicationController
   private
 
   def new_car_params
-    params.permit(:make, :model, :year, :fuel_efficiency, :fuel_type)
+    params.permit(:make, :model, :year, :mpg, :fuel_type)
   end
 end

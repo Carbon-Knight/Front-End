@@ -14,9 +14,9 @@
     <%= number_field_tag :year, nil, placeholder: "input integer"  %>
 
     <%= label_tag :fuel_efficiency %>
-    <%= number_field_tag :fuel_efficiency, nil, placeholder: "input mpg as integer" %>
+    <%= number_field_tag :mpg, nil, placeholder: "input mpg as integer" %>
 
-    <%= select_tag(:fuel_type, options_for_select([['Select Fuel Type'], ['Gasoline'],["Diesel"]], '1'))%> <br>
+    <%= select_tag(:fuel_type, options_for_select([['Select Fuel Type'], ['gasoline'],["diesel"]], '1'))%> <br>
 
     <%= submit_tag 'Add Vehicle' %>
     <% end %>

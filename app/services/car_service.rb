@@ -4,8 +4,9 @@ class CarService
        createUserCar(input: {
          userId: #{current_user.id},
          make: \"#{car_params[:make]}\",
-         model: \"#{car_params[:year]}\",
-         mpg: #{car_params[:mpg].to_i},
+         model: \"#{car_params[:model]}\",
+         year: #{car_params[:year]},
+         mpg: #{car_params[:mpg]},
          fuelType: \"#{car_params[:fuel_type]}\"
          }) {
            car {
@@ -13,7 +14,6 @@ class CarService
            }
          }
        }"
-
     make_request(query)
   end
 

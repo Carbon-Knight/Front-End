@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Add a Car Form Page' do
   describe 'As an authenticated user' do
     before :each do
-      @user = User.create(name: 'Mr. Fake', email: 'fake@email.com', uid: '7', token: 'token')
+      @user = create(:user)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
     end
@@ -22,11 +22,11 @@ describe 'Add a Car Form Page' do
       fill_in :make, with: "Ford"
       fill_in :model, with: "Mustang"
       fill_in :year, with: 2013
-      fill_in :fuel_efficiency, with: 24
+      fill_in :mpg, with: 24
 
-      select "Gasoline", :from => "fuel_type"
+      select "gasoline", :from => "fuel_type"
 
-      car_info = {make:"Ford",mpg:24,fuelType:"Gasoline",model:"Mustang",year:2013}
+      car_info = {make:"Ford",mpg:24,fuelType:"gasoline",model:"Mustang",year:2013}
       cars = [Car.new(car_info)]
       allow(CarsFacade).to receive(:get_cars).with(@user).and_return(cars)
 
