@@ -11,10 +11,30 @@ describe 'Add a Car Form Page' do
     it "I can add a new car by filling out a form" do
       visit "/car_monthly_mileages/new"
 
+      expect(page).to_not have_css('.create-monthly-mileage')
+      
       click_link "Add a Car"
       expect(current_path).to eq("/cars/new")
-
+      
       fill_in :make, with: "Ford"
+      fill_in :model, with: "Mustang"
+      fill_in :year, with: 2013
+      fill_in :fuel_efficiency, with: 24
+      
+      select "Gasoline", :from => "fuel_type"
+      
+      click_button "Add Vehicle"
+      
+      expect(current_path).to eq("/car_monthly_mileages/new")
+      
+      expect(page).to have_css('.create-monthly-mileage')
+      expect(page).to have_select(:cars, :options => ['2013 Ford Mustang'])
+      
+    end
+
+    xit "I cannot add a new car with missing fields" do 
+      visit cars_new_path 
+
       fill_in :model, with: "Mustang"
       fill_in :year, with: 2013
       fill_in :fuel_efficiency, with: 24
@@ -23,7 +43,8 @@ describe 'Add a Car Form Page' do
 
       click_button "Add Vehicle"
 
-      expect(current_path).to eq("/car_monthly_mileages/new")
+      expect(current_path).to eq(cars_new_path)
+      expect(page).to have_content("Missing fields [ ]  required...")
     end
   end
 end

@@ -11,7 +11,7 @@ class CarService
   end
 
   def self.format_query(car_params, current_user)
-    "mutation {
+   "mutation {
       createUserCar(input: {
         userId: #{current_user.id},
         make: \"#{car_params[:make]}\",
