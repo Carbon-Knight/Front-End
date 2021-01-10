@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#show'
 
   get '/car_monthly_mileages/new', to: 'car_monthly_mileages#new'
-  get '/cars/new', to: 'car#new'
-  post '/cars', to: 'car#create'
+  get '/cars/new', to: 'cars#new'
+  post '/cars', to: 'cars#create'
 end
