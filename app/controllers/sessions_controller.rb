@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     user.token = user_data[:credentials][:token]
     user.image = user_data[:info][:image]
     user.save
-binding.pry
+    
     session[:user_id] = user.id
     redirect_to dashboard_path
   end
