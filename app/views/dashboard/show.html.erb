@@ -12,6 +12,8 @@
   </div>
 
   <div id="graph">
+    <p>You have no footprint data</p>
+    <%# <%= column_chart current_user.footprint.group_by_month(:created_at, format: "%b", messages: {empty: 'You have no footprint data'}) %> %>
     -- Graph in the middle --
   </div>
 
