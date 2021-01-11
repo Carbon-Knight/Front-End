@@ -44,7 +44,7 @@ describe 'User Dashboard' do
       it 'has links for the leader board and carbon calculator' do
         within '#user-carbon-data' do
           expect(page).to have_link('Visit Leader Board Here')
-          expect(page).to have_link('Input Data Here')
+          expect(page).to have_link('Input Vehicle Data Here')
         end
       end
 
