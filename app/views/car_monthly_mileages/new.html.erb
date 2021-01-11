@@ -1,1 +1,14 @@
+<h1>Calculate Your Car's Footprint for Month</h1>
+
 <%= link_to 'Add a Car', '/cars/new', method: :get %>
+
+<% unless @cars.empty? %>
+  <section class='create-monthly-mileage'>
+    <%= form_tag car_monthly_mileages_new_path, method: :post do %>
+      <%= select_tag(:cars, options_for_select(@cars.map {|car| "#{car.year} #{car.make}  #{car.model} "}, '1')) %>
+
+      <%= submit_tag 'Create Footprint for Month' %>
+    <% end %>
+  </section>
+
+<% end %>
