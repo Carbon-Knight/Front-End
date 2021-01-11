@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 describe 'Carbon Footprint Calculation for Car Monthly Mileages Page' do
+  describe "As a visitor" do
+    it "I am unable to visit the dashboard" do
+      visit dashboard_path
+      expect(current_path).to eq('/')
+      expect(page).to have_content("Please log in")
+    end
+  end
+  
   describe 'As an authenticated user' do
     before :each do
       @user = create(:user)
