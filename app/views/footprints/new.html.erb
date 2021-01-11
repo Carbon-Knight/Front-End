@@ -1,0 +1,22 @@
+<h1>Input a new footprint estimate</h1>
+
+<%= link_to 'Add a Car', '/cars/new', method: :get %>
+
+<% unless @cars.empty? %>
+  <section class='create-footprint-estimate'>
+    <%= form_tag '/carbon_calculator', method: :post do %>
+      <%= select_tag(:car, options_for_select(@cars.map {|car| "#{car.year} #{car.make} #{car.model}"}, '1')) %>
+
+      <%= label_tag :total_mileage, 'Total Mileage' %>
+      <%= text_field_tag :total_mileage, params[:total_mileage] %>
+
+      <div class='date-time-select'>
+        <%= date_select(:input, :month, order: [:month]) %>
+        <%= date_select(:input, :year, order: [:year]) %>
+      </div>
+
+      <%= submit_tag 'Submit' %>
+    <% end %>
+  </section>
+
+<% end %>
