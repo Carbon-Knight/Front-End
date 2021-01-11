@@ -11,4 +11,7 @@ Rails.application.routes.draw do
   get '/car_monthly_mileages/new', to: 'car_monthly_mileages#new'
   get '/cars/new', to: 'cars#new'
   post '/cars', to: 'cars#create'
+
+  get '/carbon_calculator', to: 'footprints#new'
+  post '/carbon_calculator', to: 'footprints#create'
 end
