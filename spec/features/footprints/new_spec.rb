@@ -11,7 +11,7 @@ describe 'New Footprint Estimate Page' do
 
       stub_request(:post, url).to_return(
         status: 200,
-        body: File.read('spec/fixtures/get_cars.json')
+        body: File.read('spec/fixtures/get_footprints.json')
       )
     end
 

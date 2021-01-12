@@ -4,6 +4,12 @@ describe 'Welcome Page' do
   describe 'Index' do
     before :each do
       stub_omniauth
+
+      url = ENV['HOST_URL']
+      stub_request(:post, url).to_return(
+        status: 200,
+        body: File.read('spec/fixtures/get_footprints.json')
+      )
     end
 
     it 'Welcomes visitor w/ a login' do
