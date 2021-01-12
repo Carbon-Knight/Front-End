@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
   before_action :require_user
   def show
     #Cache rough draft 
-    #year = select_year
+    year = select_year
     # To display the years available for a user to select based on their record: 
     #Rails.cache.fetch("#{Time.now.year}")
       #@years = FootprintFacade.get_footprint_years(current_user) 
@@ -14,7 +14,7 @@ class DashboardController < ApplicationController
   end
   
   private 
-  
+
   def select_year 
     return params[:year] if params[:year]
     Time.now.year

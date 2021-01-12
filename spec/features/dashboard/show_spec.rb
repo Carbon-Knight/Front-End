@@ -8,6 +8,7 @@ describe 'User Dashboard' do
       expect(page).to have_content("Please log in")
     end
   end
+
   describe 'As a User' do
     describe 'When visiting the dashboard page' do
       before :each do
@@ -20,7 +21,12 @@ describe 'User Dashboard' do
         @user.image = user_data[:info][:image]
         @user.save
 
+        file = File.read('spec/fixtures/get_footprints.json')
+        footprints = JSON.parse(file, symbolize_names: true)[:data][:fetchUserFootprints][:footprints]
+        year = Time.now.year
+
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+        allow(FootprintService).to receive(:get_footprints).with(year, @user).and_return(footprints)
 
         visit dashboard_path
       end
@@ -47,34 +53,9 @@ describe 'User Dashboard' do
           expect(page).to have_link('Input Data Here')
         end
       end
+
       describe 'footprint graph' do
-        let(:url) { ENV['HOST_URL']}
-        before do
-          stub_request(:post, url).to_return(
-            status: 200,
-            body: File.read('spec/fixtures/get_footprints.json')
-          )
-        end
         it 'I see my previous footprint data' do
-          # response = FootprintService.get_footprints(year, current_user)
-          # require "pry"; binding.pry
-          # car_info = {make:"subaru",mpg:25,fuelType:"gasoline",model:"forester",year:2010}
-          # car = Car.new(car_info)
-
-          # footprints =[{car_id: car, total_mileage: 20, month: 'January', year: '2021', car_id: car, total_mileage: 204, month: 'February', year: '2021'}]
-          # file = File.read('spec/fixtures/get_footprints.json')
-          # footprints = JSON.parse(file, symbolize_names: true)[:data][:fetchUserFootprints][:footprints]
-          #
-          # allow(FootprintService).to receive(:get_footprints).with(year, @user).and_return(footprints)
-          # result = FootprintFacade.get_footprints(year, @user)
-          # require "pry"; binding.pry
-          year = 2021
-          file = File.read('spec/fixtures/get_footprints.json')
-          footprints = JSON.parse(response, symbolize_names: true)[:data][:fetchUserFootprints][:footprints]
-
-          allow(FootprintService).to receive(:get_footprints).with(year, @user).and_return(footprints)
-          result = FootprintFacade.get_footprints(year, @user)
-          # require "pry"; binding.pry
           expect(page).to have_content('Your Carbon Footprint Is:')
           expect(page).to have_css('#charts')
           within('#charts') do
