@@ -8,6 +8,7 @@ describe 'User Dashboard' do
       expect(page).to have_content("Please log in")
     end
   end
+
   describe 'As a User' do
     describe 'When visiting the dashboard page' do
       before :each do
@@ -26,7 +27,6 @@ describe 'User Dashboard' do
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
         allow(FootprintService).to receive(:get_footprints).with(year, @user).and_return(footprints)
-
 
         visit dashboard_path
       end
@@ -53,6 +53,7 @@ describe 'User Dashboard' do
           expect(page).to have_link('Input Data Here')
         end
       end
+
       describe 'footprint graph' do
         it 'I see my previous footprint data' do
           expect(page).to have_content('Your Carbon Footprint Is:')
