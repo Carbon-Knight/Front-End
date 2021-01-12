@@ -8,27 +8,36 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
-    <nav class="nav justify-content-center">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div>
+        <a class="navbar-brand" href="/">
+          <img src="https://avatars0.githubusercontent.com/u/76964584?s=200&v=4" alt="CarbonKnight" width="40" height="34" class="d-inline-block align-top">
+        </a>
+      </div>
+
       <% if current_user %>
-      <div class="btn btn-outline-primary">
+      <div class="navbar-brand">
         <a class="nav-link" href="/dashboard">Home</a>
       </div>
-      <div class="btn btn-outline-primary">
+      <div class="navbar-brand">
         <a class="nav-link" href="/friends">Friends</a>
       </div>
-      <div class="btn btn-outline-primary">
+      <div class="navbar-brand">
         <a class="nav-link active" href="/car_monthly_mileages/new">Carbon Calculator</a>
       </div>
-      <div class="btn btn-outline-primary">
+      <div class="navbar-brand">
         <a class="nav-link" href="/offsets">Offsets</a>
       </div>
-      <div class="btn btn-outline-primary">
+      <div class="navbar-brand">
         <a class="nav-link" href="/resources">Resources</a>
       </div>
-      <div class="btn btn-outline-primary">
+      <div class="navbar-brand">
         <a class="nav-link" href="/log_out">Log Out</a>
+      </div>
       <% else !current_user %>
+      <div class='navbar-brand'>
       <a class="nav-link" href="/auth/google_oauth2">Login with Google</a>
+      </div>
     <% end %>
   </nav>
   <body>
