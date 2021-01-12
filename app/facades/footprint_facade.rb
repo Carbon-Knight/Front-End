@@ -9,6 +9,5 @@ class FootprintFacade
       new_footprint = Footprint.new(footprint, year)
       [new_footprint.month, new_footprint.carbon_in_kg]
     end
-    require "pry"; binding.pry
   end
 end

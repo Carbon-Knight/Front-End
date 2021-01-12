@@ -30,10 +30,12 @@ RSpec.describe FootprintFacade do
 
     allow(FootprintService).to receive(:get_footprints).with(year, current_user).and_return(footprints)
 
-    result = FootprintFacade.get_footprints(year, current_user)
-    first = result[0]
+    results = FootprintFacade.get_footprints(year, current_user)
 
-    expect(result).to be_a(Array)
-    expect(first).to be_a(Footprint)
+    expect(results).to be_a(Array)
+    results.each do |result|
+      expect(result[0]).to be_a(String)
+      expect(result[1]).to be_a(Numeric)
+    end
   end
 end
