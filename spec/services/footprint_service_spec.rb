@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe FootprintService do
-  let(:url) { ENV['HOST_URL']}
   describe 'Get user\'s footprint' do
+    let(:url) { ENV['HOST_URL']}
     before do
       stub_request(:post, url).to_return(
         status: 200,
@@ -26,6 +26,8 @@ RSpec.describe FootprintService do
     end
   end
   describe 'Create new footprint' do
+    let(:url) { ENV['HOST_URL']}
+    
     before do
       stub_request(:post, url).to_return(
         status: 200,
