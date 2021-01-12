@@ -49,6 +49,14 @@ describe 'User Dashboard' do
       end
 
       xit 'I see my previous footprint data' do
+        year = '2021'
+        file = File.read('spec/fixtures/get_footprints.json')
+        footprints = JSON.parse(file, symbolize_names: true)[:data][:fetchUserFootprints][:footprints]
+
+        allow(FootprintService).to receive(:get_footprints).with(year, @user).and_return(footprints)
+
+        result = FootprintFacade.get_footprints(year, @user)
+        require "pry"; binding.pry
         expect(page).to have_content('Your Carbon Footprint Is:')
         expect(page).to have_css('#charts')
         within('#charts') do
