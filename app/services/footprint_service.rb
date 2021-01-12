@@ -14,11 +14,31 @@ class FootprintService
     }"
     make_request(query)
   end
+
+  def self.get_footprints(current_user, year)
+    query = "query 
+    { 
+      fetchUserFootprint(input: {
+        user_id: #{current_user.id},
+        year: #{year}
+      }) {  
+        footprints 
+        {
+          [{
+            month
+            carbon_in_kg
+          }]
+        }
+      }
+    }"
+    make_request(query)[:data][:fetchUserFootprints][:footprints]
+  end
+  
   def self.make_request(query)
     header_hash = {
       "Content-Type": "application/json"
     }
-
+  
     result = Faraday.post(ENV['HOST_URL'], JSON.generate({query: query}), header_hash)
     JSON.parse(result.body, symbolize_names: true)
   end
