@@ -8,37 +8,40 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
-    <nav class="nav bg-dark">
-      <div>
-        <a class="navbar-brand" href="/">
-          <img src="https://avatars0.githubusercontent.com/u/76964584?s=200&v=4" alt="CarbonKnight" width="40" height="34" class="d-inline-block align-top">
-        </a>
-      </div>
+  <nav class="nav bg-dark">
+    <div>
+      <a class="navbar-brand" href="/">
+        <img src="https://avatars0.githubusercontent.com/u/76964584?s=200&v=4" alt="CarbonKnight" width="40" height="34" class="d-inline-block align-top">
+      </a>
+    </div>
 
-      <div class="dropdown ml-auto mt-auto">
-        <button class="navbar-toggler dropdown-toggle btn-link" type="button" data-toggle="dropdown">Navigation<span class="navbar-toggler-icon"></span></button>
-        <ul class="dropdown-menu">
-          <% if current_user %>
-            <li>
-              <a class="dropdown-item" href="/dashboard">Home</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="/friends">Friends</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="/car_monthly_mileages/new">Carbon Calculator</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="/offsets">Offsets</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="/resources">Resources</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="/log_out">Log Out</a>
-            </li>
-          <% else !current_user %>
-            <li class='navbar-brand'>
+    <div class="dropdown ml-auto mt-auto">
+      <button class="navbar-toggler dropdown-toggle btn-link" type="button" data-toggle="dropdown">Navigation<span class="navbar-toggler-icon"></span></button>
+      <ul class="dropdown-menu">
+        <% if current_user %>
+          <li>
+            <a class="dropdown-item" href="/dashboard">Home</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/friends">Friends</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/car_monthly_mileages/new">Carbon Calculator</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/offsets">Offsets</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/resources">Resources</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/log_out">Log Out</a>
+          </li>
+        <% else !current_user %>
+          <li>
+            <a class="dropdown-item" href="/resources">Resources</a>
+          </li>
+          <li class='navbar-brand'>
             <a class="dropdown-item" href="/auth/google_oauth2">Log in with Google</a>
           </li>
         <% end %>
