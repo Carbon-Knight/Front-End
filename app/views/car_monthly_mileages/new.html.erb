@@ -1,6 +1,23 @@
-<h1>Calculate Your Car's Footprint for Month</h1>
+  <div class="jumbotron text-center">
+    <h5 class="display-4">
+      Calculate Your Car's Footprint for a Month</h5>
+  </div>
 
-<%= link_to 'Add a Car', '/cars/new', method: :get %>
+<div class='container-lg text-center'>
+  <% if @cars.empty? %>
+    <div class="alert alert-dismissible alert-primary">
+      <strong>Oh snap!</strong> You haven't added any cars yet. <a href='/cars/new' class="alert-link">Add a car</a> to calculate your footprint.
+    </div>
+  <% end%>
+</div>
+
+<section id='user-carbon-data' class="text-center p-5">
+  <div class='container-lg'>
+    <button class="btn btn-secondary">
+      <a class="btn btn-secondary" href='/cars/new'>Add a Car</a>
+    </button>
+  </div>
+</section>
 
 <% unless @cars.empty? %>
   <section class='create-monthly-mileage'>
