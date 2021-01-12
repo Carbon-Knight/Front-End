@@ -10,12 +10,12 @@ describe 'Welcome Page' do
       visit root_path
       expect(page).to have_content('Welcome to CarbonKnight')
       expect(page).to have_content('CarbonKight is a way for you to track your carbon footprint over time')
-      expect(page).to have_link('Login with Google')
+      expect(page).to have_link('Log in with Google')
     end
 
     it 'Logs in/ registers with google OAuth' do
       visit root_path
-      click_link 'Login with Google'
+      click_link 'Log in with Google'
       expect(current_path).to eq(dashboard_path)
     end
   end
