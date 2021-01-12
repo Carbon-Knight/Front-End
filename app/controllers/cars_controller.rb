@@ -8,10 +8,10 @@ class CarsController < ApplicationController
   def create
     if missing_params?
       flash.now[:error] = 'Missing fields'
-      render cars_new_path
+      render new_car_path
     else
       CarsFacade.new_car(new_car_params, current_user)
-      redirect_to "/car_monthly_mileages/new"
+      redirect_to carbon_calculator_path
     end
   end
 

@@ -34,7 +34,7 @@ describe 'User Dashboard' do
         within first '.nav' do
           expect(page).to have_link('Home')
           expect(page).to have_link('Friends')
-          expect(page).to have_link('Carbon Calculator')
+          expect(page).to have_link('Calculate Footprint')
           expect(page).to have_link('Offsets')
           expect(page).to have_link('Resources')
           expect(page).to have_link('Log Out')
