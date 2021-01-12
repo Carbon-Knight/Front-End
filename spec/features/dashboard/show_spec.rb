@@ -30,7 +30,7 @@ describe 'User Dashboard' do
         expect(page).to have_css("img[src*='#{@user.image}']")
       end
 
-      it "has links from the nav application layout" do
+      it 'Has links from the nav application layout' do
         within first '.nav' do
           expect(page).to have_link('Home')
           expect(page).to have_link('Friends')
