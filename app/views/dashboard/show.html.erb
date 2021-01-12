@@ -12,7 +12,7 @@
   </div>
 
   <div id="graph">
-    <%= column_chart @footprints.group_by_month(:month, format: "%b", messages: {empty: 'You have no footprint data'}) %>
+    <%= area_chart @footprints %>
     <!-- <p>You have no footprint data</p> -->
     -- Graph in the middle --
   </div>
