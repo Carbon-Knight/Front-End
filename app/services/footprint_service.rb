@@ -8,7 +8,7 @@ class FootprintService
           year: \"#{footprint_params[:year]}\"
         }) {
             footprint {
-              footprint
+              id
             }
           }
     }"
