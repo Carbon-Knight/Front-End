@@ -1,9 +1,12 @@
 <section id="user-header">
-  <h1 class="text-center">
-    <img src=<%=current_user.image%> alt="No Image" class="rounded-circle">
-    Sup <%= current_user.name %>!</h1>
+  <div class="jumbotron text-center">
+    <h1 class="display-3">
+      <img src=<%=current_user.image%> alt="No Image" class="rounded-circle">
+      Hello <%= current_user.name %>!</h1>
+  </div>
   <div>
     <h3 class="text-center"> Your Carbon Footprint Is: </h3>
+  </div>
 </section>
 
 <section id="charts">
@@ -23,12 +26,12 @@
 </section>
 
 <section id='user-carbon-data'>
-  <nav class="nav justify-content-center">
-    <li class="btn btn-outline-primary">
-      <a class="nav-link active" href="/leader_board">Visit Leader Board Here</a>
+  <div class="btn btn-group">
+    <li class="btn btn-secondary">
+      <a class="btn btn-secondary" href="/leader_board">Visit Leader Board Here</a>
     </li>
-    <li class="btn btn-outline-primary">
-      <a class="nav-link" href="/car_monthly_mileages/new">Input Vehicle Data Here</a>
+    <li class="btn btn-secondary">
+      <a class="btn btn-secondary" href="/car_monthly_mileages/new">Input Vehicle Data Here</a>
     </li>
-  </nav>
+  </div>
 </section>
