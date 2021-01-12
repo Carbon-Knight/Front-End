@@ -17,6 +17,8 @@ describe 'Carbon Footprint Calculation for Car Monthly Mileages Page' do
     end
 
     it 'I can click link on dashboard and I am taken to the form' do
+      cars = []
+      allow(CarsFacade).to receive(:get_cars).with(@user).and_return(cars)
       visit dashboard_path
       click_link 'Input Vehicle Data Here'
       expect(current_path).to eq('/car_monthly_mileages/new')
