@@ -5,8 +5,10 @@ class FootprintFacade
 
   def self.get_footprints(year, current_user)
     footprints = FootprintService.get_footprints(year, current_user)
-    footprints.map do |footprint|
-      Footprint.new(footprint, year)
+    result = footprints.map do |footprint|
+      new_footprint = Footprint.new(footprint, year)
+      [new_footprint.month, new_footprint.carbon_in_kg]
     end
+    require "pry"; binding.pry
   end
 end
