@@ -2,6 +2,7 @@ class FootprintService
   def self.new_footprint(footprint_params, current_user)
     query = "mutation {
         createFootprintAndCarMonthlyMileage(input: {
+          footprintId: ?,
           carId: \"#{footprint_params[:car_id]}\",
           totalMileage: #{footprint_params[:total_mileage]},
           month: \"#{footprint_params[:month]}\",
