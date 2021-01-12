@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   get '/car_monthly_mileages/new', to: 'car_monthly_mileages#new'
   get '/cars/new', to: 'cars#new'
   post '/cars', to: 'cars#create'
+
+  resources :resources, only: [:index]
 end
