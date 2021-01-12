@@ -47,27 +47,54 @@ describe 'User Dashboard' do
           expect(page).to have_link('Input Data Here')
         end
       end
+      describe 'footprint graph' do
+        let(:url) { ENV['HOST_URL']}
+        before do
+          stub_request(:post, url).to_return(
+            status: 200,
+            body: File.read('spec/fixtures/get_footprints.json')
+          )
+        end
+        it 'I see my previous footprint data' do
+          # response = FootprintService.get_footprints(year, current_user)
+          # require "pry"; binding.pry
+          # car_info = {make:"subaru",mpg:25,fuelType:"gasoline",model:"forester",year:2010}
+          # car = Car.new(car_info)
 
-      xit 'I see my previous footprint data' do
-        expect(page).to have_content('Your Carbon Footprint Is:')
-        expect(page).to have_css('#charts')
-        within('#charts') do
-          expect(page).to have_css('#graph')
-          within('#graph') do
-            # TODO:
-            # expect(page).to have month data etc etc
-            # mock a new footprint
-            # expect(page).to_not have_content('You have no footprint data')
+          # footprints =[{car_id: car, total_mileage: 20, month: 'January', year: '2021', car_id: car, total_mileage: 204, month: 'February', year: '2021'}]
+          # file = File.read('spec/fixtures/get_footprints.json')
+          # footprints = JSON.parse(file, symbolize_names: true)[:data][:fetchUserFootprints][:footprints]
+          #
+          # allow(FootprintService).to receive(:get_footprints).with(year, @user).and_return(footprints)
+          # result = FootprintFacade.get_footprints(year, @user)
+          # require "pry"; binding.pry
+          year = 2021
+          file = File.read('spec/fixtures/get_footprints.json')
+          footprints = JSON.parse(response, symbolize_names: true)[:data][:fetchUserFootprints][:footprints]
+
+          allow(FootprintService).to receive(:get_footprints).with(year, @user).and_return(footprints)
+          result = FootprintFacade.get_footprints(year, @user)
+          # require "pry"; binding.pry
+          expect(page).to have_content('Your Carbon Footprint Is:')
+          expect(page).to have_css('#charts')
+          within('#charts') do
+            expect(page).to have_css('#graph')
+            within('#graph') do
+              # TODO:
+              # expect(page).to have month data etc etc
+              # mock a new footprint
+              # expect(page).to_not have_content('You have no footprint data')
+            end
           end
         end
-      end
-      it 'I see no previous data when I have not entered any data' do
-        expect(page).to have_content('Your Carbon Footprint Is:')
-        expect(page).to have_css('#charts')
-        within('#charts') do
-          expect(page).to have_css('#graph')
-          within('#graph') do
-            expect(page).to have_content('You have no footprint data')
+        it 'I see no previous data when I have not entered any data' do
+          expect(page).to have_content('Your Carbon Footprint Is:')
+          expect(page).to have_css('#charts')
+          within('#charts') do
+            expect(page).to have_css('#graph')
+            within('#graph') do
+              expect(page).to have_content('You have no footprint data')
+            end
           end
         end
       end
