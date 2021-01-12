@@ -1,4 +1,6 @@
 class CarsController < ApplicationController
+  before_action :require_user
+
   def new
     @user = current_user
   end
