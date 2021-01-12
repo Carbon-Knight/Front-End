@@ -10,4 +10,8 @@ class FootprintFacade
       [new_footprint.month, new_footprint.carbon_in_kg]
     end
   end
+
+  def self.get_user_footprint_years(current_user)
+    FootprintService.get_user_footprint_years(current_user)
+  end
 end
