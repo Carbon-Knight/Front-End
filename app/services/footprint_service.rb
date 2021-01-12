@@ -15,7 +15,7 @@ class FootprintService
     make_request(query)
   end
 
-  def self.get_footprints(current_user, year)
+  def self.get_footprints(year, current_user)
     query = "query 
     { 
       fetchUserFootprint(input: {
