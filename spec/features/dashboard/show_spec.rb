@@ -71,6 +71,13 @@ describe 'User Dashboard' do
           end
         end
       end
+
+      it 'I click resources link in nav bar and am taken to that page' do
+        within '.nav' do
+          click_link 'Resources'
+          expect(current_path).to eq('/resources')
+        end
+      end
     end
   end
 end
