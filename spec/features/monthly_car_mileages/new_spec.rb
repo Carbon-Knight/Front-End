@@ -9,7 +9,7 @@ describe 'Carbon Footprint Calculation for Car Monthly Mileages Page' do
     end
   end
 
-  describe 'As an authenticated user' do
+  describe 'As an authenticated user with no cars in the DB' do
     before :each do
       @user = create(:user)
 
@@ -31,5 +31,39 @@ describe 'Carbon Footprint Calculation for Car Monthly Mileages Page' do
 
       expect(page).to have_link('Add a Car')
     end
+  end
+
+  describe 'As an authenicated user with cars in the DB' do
+    before :each do
+      @user = create(:user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+      car_1 = { make: 'Ford', mpg: 24, fuelType: 'gasoline', model: 'Mustang', year: 2013 }
+      car_2 = { make: 'Honda', mpg: 31, fuelType: 'gasoline', model: 'Civic', year: 2018 }
+      car_3 = { make: 'Dodge', mpg: 15, fuelType: 'diesel', model: 'Ram', year: 2010 }
+      @cars = [Car.new(car_1), Car.new(car_2), Car.new(car_3)]
+      allow(CarsFacade).to receive(:get_cars).with(@user).and_return(@cars)
+
+      visit '/car_monthly_mileages/new'
+      # allow(CarService).to receive(:get_cars).with(@user).and_return(nil)
+      # allow_any_instance_of(CarsController).to receive(:new_car_params).and_return(new_car)
+      # allow(CarService).to receive(:new_car).with(new_car, @user).and_return(nil)
+    end
+
+    it 'I dont see a message saying I have not added any cars yet' do
+      expect(page).to_not have_css('#no-cars-alert')
+    end
+
+    it 'I see the form to add a new footprint' do
+      within '.create-monthly-mileage' do
+        expect(page).to have_css('.select-car')
+        expect(page).to have_css('.select-month')
+        expect(page).to have_css('.select-year')
+        expect(page).to have_button('Create Footprint for Month')
+      end
+    end
+
+    it 'I see all my cars in the drop down selector'
+
+    it 'I can fill out form and submit it'
   end
 end
