@@ -21,7 +21,7 @@ describe 'Carbon Footprint Calculation for Car Monthly Mileages Page' do
       allow(CarsFacade).to receive(:get_cars).with(@user).and_return(cars)
       visit dashboard_path
       click_link 'Input Vehicle Data Here'
-      expect(current_path).to eq('/car_monthly_mileages/new')
+      expect(current_path).to eq(carbon_calculator_path)
     end
 
     it 'I see a link to add a new car' do
@@ -43,27 +43,11 @@ describe 'Carbon Footprint Calculation for Car Monthly Mileages Page' do
       @cars = [Car.new(car_1), Car.new(car_2), Car.new(car_3)]
       allow(CarsFacade).to receive(:get_cars).with(@user).and_return(@cars)
 
-      visit '/car_monthly_mileages/new'
-      # allow(CarService).to receive(:get_cars).with(@user).and_return(nil)
-      # allow_any_instance_of(CarsController).to receive(:new_car_params).and_return(new_car)
-      # allow(CarService).to receive(:new_car).with(new_car, @user).and_return(nil)
+      visit carbon_calculator_path
     end
 
     it 'I dont see a message saying I have not added any cars yet' do
       expect(page).to_not have_css('#no-cars-alert')
     end
-
-    it 'I see the form to add a new footprint' do
-      within '.create-monthly-mileage' do
-        expect(page).to have_css('.select-car')
-        expect(page).to have_css('.select-month')
-        expect(page).to have_css('.select-year')
-        expect(page).to have_button('Create Footprint for Month')
-      end
-    end
-
-    it 'I see all my cars in the drop down selector'
-
-    it 'I can fill out form and submit it'
   end
 end

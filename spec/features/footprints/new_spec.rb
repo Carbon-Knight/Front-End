@@ -17,9 +17,9 @@ describe 'New Footprint Estimate Page' do
 
     it 'I see a link to add a new footprint estimate and am taken to the form' do
       visit '/dashboard'
-      expect(page).to have_link('Input Data Here')
+      expect(page).to have_link('Input Vehicle Data Here')
 
-      click_link('Input Data Here')
+      click_link('Input Vehicle Data Here')
       expect(current_path).to eq('/carbon_calculator')
     end
 

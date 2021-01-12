@@ -15,8 +15,8 @@
   </div>
 
   <div id="graph">
-    <%= column_chart @footprints.group_by_month(:month, format: "%b", messages: {empty: 'You have no footprint data'}) %>
-    <!-- <p>You have no footprint data</p> -->
+    <%# <%= column_chart @footprints.group_by_month(:month, format: "%b", messages: {empty: 'You have no footprint data'}) %> %>
+    <p>You have no footprint data</p>
     -- Graph in the middle --
   </div>
 
@@ -32,7 +32,7 @@
       <a class="btn btn-secondary" href="/leader_board">Visit Leader Board Here</a>
     </button>
     <button class="btn btn-secondary">
-      <a class="btn btn-secondary" href="/car_monthly_mileages/new">Input Vehicle Data Here</a>
+      <a class="btn btn-secondary" href='/carbon_calculator'>Input Vehicle Data Here</a>
     </button>
   </button>
   </div>
