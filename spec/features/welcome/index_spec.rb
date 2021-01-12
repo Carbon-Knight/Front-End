@@ -9,7 +9,7 @@ describe 'Welcome Page' do
     it 'Welcomes visitor w/ a login' do
       visit root_path
       expect(page).to have_content('Welcome to CarbonKnight')
-      expect(page).to have_content('CarbonKight is a way for you to track your carbon footprint over time')
+      expect(page).to have_content('An app to track your carbon footprint over time')
       expect(page).to have_link('Log in with Google')
     end
 
