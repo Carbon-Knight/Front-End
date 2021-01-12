@@ -20,9 +20,9 @@ describe 'Add a Car Form Page' do
       cars = []
       allow(CarsFacade).to receive(:get_cars).with(@user).and_return(cars)
 
-      visit '/car_monthly_mileages/new'
+      visit carbon_calculator_path
 
-      expect(page).to_not have_css('.create-monthly-mileage')
+      expect(page).to_not have_css('.calculate-footprint')
 
       click_link 'Add a Car'
       expect(current_path).to eq('/cars/new')
@@ -48,15 +48,17 @@ describe 'Add a Car Form Page' do
       allow_any_instance_of(CarsController).to receive(:new_car_params).and_return(new_car)
       allow(CarService).to receive(:new_car).with(new_car, @user).and_return(nil)
 
-      click_button 'Add Vehicle'
+      click_button "Add Vehicle"
 
-      expect(current_path).to eq('/car_monthly_mileages/new')
-      expect(page).to have_css('.create-monthly-mileage')
-      expect(page).to have_select(:cars, options: ['2013 Ford Mustang'])
+      expect(current_path).to eq(carbon_calculator_path)
+
+      expect(page).to have_css('.calculate-footprint')
+      expect(page).to have_select(:car, :options => ['2013 Ford Mustang'])
+
     end
 
-    it 'I cannot add a new car with missing fields' do
-      visit cars_new_path
+    it "I cannot add a new car with missing fields" do
+      visit new_car_path
 
       fill_in :model, with: 'Mustang'
       fill_in :year, with: 2013

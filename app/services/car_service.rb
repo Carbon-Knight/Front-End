@@ -9,7 +9,7 @@ class CarService
          mpg: #{car_params[:mpg]},
          fuelType: \"#{car_params[:fuel_type]}\"
          }) {
-           car {
+           createdCar {
              userId
            }
          }

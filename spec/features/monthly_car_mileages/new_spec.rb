@@ -27,7 +27,7 @@ describe 'Carbon Footprint Calculation for Car Monthly Mileages Page' do
     it 'I see a link to add a new car' do
       cars = []
       allow(CarsFacade).to receive(:get_cars).with(@user).and_return(cars)
-      visit '/car_monthly_mileages/new'
+      visit carbon_calculator_path
 
       expect(page).to have_link('Add a Car')
     end
