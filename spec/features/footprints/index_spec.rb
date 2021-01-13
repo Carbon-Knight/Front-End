@@ -45,4 +45,20 @@ describe 'Footprint Index Page' do
       end
     end
   end
+
+  describe 'As an authenticated user with no footprints' do
+    before :each do
+      @user = create(:user)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+    end
+
+    it 'I can click link on dashboard and I am taken to the form' do
+      footprints = []
+      allow(CarMonthlyMileageFacade).to receive(:get_car_monthly_mileages).with(@user).and_return(footprints)
+      visit '/footprints'
+      expect(page).to_not have_css('footprint-details')
+      expect(page).to have_content('Oh snap! You don\'t have any carbon footprints yet.')
+    end
+  end
 end
