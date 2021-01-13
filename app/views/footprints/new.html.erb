@@ -1,8 +1,7 @@
 <h1>Calculate Footprint for the Month</h1>
 
 <%= link_to 'Add a Car', '/cars/new', method: :get %>
-
-<% unless @cars.empty? %>
+<% unless @cars.nil? || @cars.empty? %>
   <section class='calculate-footprint'>
     <%= form_tag '/carbon_calculator', method: :post do %>
       <%= select_tag(:car, options_for_select(@cars.map {|car| "#{car.year} #{car.make} #{car.model}"}, '1')) %>
