@@ -8,14 +8,19 @@ class DashboardController < ApplicationController
     end
 
     Rails.cache.fetch("footprints/#{current_user.id}/#{year}") do
-      @footprints = FootprintFacade.get_footprints(year, current_user)
+      footprint_data = FootprintFacade.return_data(year, current_user)
+      no_footprints = footprint_data.values.all? do |value|
+          value == 0
+      end
+      if no_footprints == true
+        @footprints = {}
+      else
+        @footprints = footprint_data
+      end
     end
-    @data = FootprintFacade.return_data(year, current_user)
   end
-
   def select_year
     return params[:footprint_year] if params[:year]
     Time.now.year
   end
-
 end
