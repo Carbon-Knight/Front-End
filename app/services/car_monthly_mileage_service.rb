@@ -1,6 +1,6 @@
 class CarMonthlyMileageService
   def self.get_car_monthly_mileages(current_user)
-    query = "{ query {
+    query = "query {
           fetchAllUserCarMonthlyMileages(user_id: #{current_user.id}) {
               id,
               month,
