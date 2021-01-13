@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   get '/carbon_calculator', to: 'footprints#new'
   post '/carbon_calculator', to: 'footprints#create'
 
+  resources :footprints, only: [:index]
   resources :resources, only: [:index]
 end

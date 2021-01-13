@@ -47,10 +47,18 @@ describe 'User Dashboard' do
         end
       end
 
-      it 'has links for the leader board and carbon calculator' do
+      it 'has links for the leader board, carbon calculator' do
         within '#user-carbon-data' do
           expect(page).to have_link('Visit Leader Board Here')
           expect(page).to have_link('Input Vehicle Data Here')
+          expect(page).to have_link('View Previous Footprints')
+        end
+      end
+
+      it 'I click resources link in nav bar and am taken to that page' do
+        within '.nav' do
+          click_link 'Resources'
+          expect(current_path).to eq('/resources')
         end
       end
 
@@ -77,13 +85,6 @@ describe 'User Dashboard' do
               expect(page).to have_content('You have no footprint data')
             end
           end
-        end
-      end
-
-      it 'I click resources link in nav bar and am taken to that page' do
-        within '.nav' do
-          click_link 'Resources'
-          expect(current_path).to eq('/resources')
         end
       end
     end
