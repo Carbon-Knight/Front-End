@@ -5,7 +5,7 @@
   </div>
 </div>
 
-<div class='container footprint-details'>
+<div class='container text-center footprint-details'>
   <div class='row'>
     <% @car_monthly_mileages.each do |car_monthly_mileage|%>
       <div class='card gutter10 footprint-<%= car_monthly_mileage.id %>'>
@@ -19,7 +19,7 @@
           </ul>
           <button class="btn btn-group">
             <button class="btn btn-success">
-              <a class="btn btn-success" href="/footprints/#{car_monthly_mileage.id}/edit">Edit Footprint</a>
+              <a class="btn btn-success" href="/footprints/<%= car_monthly_mileage.id %>/edit">Edit Footprint</a>
             </button>
           </button>
         </div>
