@@ -6,7 +6,11 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
-  <h3 align="center">Carbon Knight</h3>
+![Screen Shot 2021-01-13 at 1 49 32 PM (2)](https://user-images.githubusercontent.com/65255478/104509096-6c9b9600-55a6-11eb-8bcd-d75ea0a43f15.png)
+
+<h2 align="center">
+  <a href="https://carbon-knight.herokuapp.com/">Try It Out!</a>
+</h2>
 
   <p align="center">
     This is the front end repository for the Carbon Knight application.  Within this application a user is able input travel data and see what their carbon footprint is over time.
@@ -19,7 +23,6 @@
     ·
     <a href="https://github.com/Carbon-Knight/carbon-knight-back-end/issues">Request Feature</a>
   </p>
-</p>
 
 
 
@@ -30,7 +33,14 @@
 * [About the Project](#about-the-project)
   * [Built With](#built-with)
 * [Features](#features)
+  * [Navigation](#navigation)
+  * [Welcome](#welcome)
+  * [Login and Logout](#login-and-logout)
+  * [User Dashboard](#user-dashboard)
+  * [Carbon Footprint](#carbon-footprint)
   * [Adding a New User Car](#adding-a-new-user-car)
+  * [Resources](#resources)
+  * [Next Time](#next-time)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Configuration](#configuration)
@@ -62,6 +72,24 @@ To view all the repositories associated with Carbon Knight, please visit [Carbon
 
 
 ## Features
+  
+### Navigation
+
+The navigation bar at the top of the page presents links to reach other pages of the site.  The user will see different links within the navigation bar depending on if they have logged in or not.
+
+### Welcome
+
+This is the main landing page for a visitor.  Here a visitor is able to see a brief description of the application and are then required to log in to see more of the site.
+
+### Login and Logout
+
+[Google OAuth 2](https://developers.google.com/identity) was used in order for a user to log in to this site.  On the welcome page a user is able to 'Log in with Google' where they are then redirected to authenticate through their google account.
+
+### User Dashboard
+
+After logging in a user is taked to their dashboard.  Here they are able to see a graphical representation of all their carbon footprints.  There is also links to take them to input a new footprint or edit old footprints.
+
+### Carbon Footprint
 
 ### Adding a New User Car 
 1. Click on Carbon Calculator in the Navigation Bar
@@ -73,6 +101,13 @@ To view all the repositories associated with Carbon Knight, please visit [Carbon
    - You will be redirected back to the carbon footprint calculator 
 1. Added car will be visible within the car selection drop down 
 
+### Resources
+
+The resources page offers the user more information about carbon footprints and what can be done to reduce them.  These are links to extermal pages that offer information and resources to a curious user.  This page is accessible to a regular visitor as well as a logged in user.
+
+### Next Time
+
+Visit our [Project Board](https://github.com/orgs/Carbon-Knight/projects/1) to see other features and issues that we would have liked to work on.
 
 <!-- GETTING STARTED -->
 ## Getting Started
