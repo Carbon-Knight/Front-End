@@ -23,6 +23,7 @@ describe 'Footprint edit Page' do
         click_link 'Edit Footprint'
         expect(current_path).to eq("/footprints/#{@first_footprint.id}/edit")
       end
+      expect(page).to have_css('#edit-footprint-header')
     end
   end
 end
