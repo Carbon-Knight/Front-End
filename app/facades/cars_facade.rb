@@ -1,5 +1,4 @@
 class CarsFacade
-
   def self.new_car(car_params, current_user)
     CarService.new_car(car_params, current_user)
   end
@@ -10,5 +9,4 @@ class CarsFacade
       Car.new(car)
     end
   end
-
 end
