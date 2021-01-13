@@ -9,7 +9,7 @@ class CarService
          mpg: #{car_params[:mpg]},
          fuelType: \"#{car_params[:fuel_type]}\"
          }) {
-           car {
+           createdCar {
              userId
            }
          }
@@ -20,6 +20,7 @@ class CarService
   def self.get_cars(current_user)
       query = "query {
         fetchUserCars(userId: #{current_user.id}) {
+          id,
           make,
           model,
           year,

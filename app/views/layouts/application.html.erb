@@ -1,42 +1,104 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FrontEnd</title>
+    <title>CarbonKnight</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <%# Tells browser what icon to show on tab %>
+    <link rel="icon" href="https://avatars0.githubusercontent.com/u/76964584?s=200&v=4">
+    <%# These scripts need to be loaded in order for the dropdown nav to work %>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
   </head>
-    <nav class="nav justify-content-center">
+
+  <nav class="nav sticky-top">
+    <div class="my-auto">
+      <a class="navbar-brand" href="/">
+        <img src="https://avatars0.githubusercontent.com/u/76964584?s=200&v=4" alt="CarbonKnight" width="40" height="34" class="d-inline-block align-top">
+        CarbonKnight
+      </a>
+    </div>
+
+    <div class="ml-auto my-auto">
       <% if current_user %>
-      <div class="btn btn-outline-primary">
-        <a class="nav-link" href="/dashboard">Home</a>
-      </div>
-      <div class="btn btn-outline-primary">
-        <a class="nav-link" href="/friends">Friends</a>
-      </div>
-      <div class="btn btn-outline-primary">
-        <a class="nav-link active" href="/car_monthly_mileages/new">Carbon Calculator</a>
-      </div>
-      <div class="btn btn-outline-primary">
-        <a class="nav-link" href="/offsets">Offsets</a>
-      </div>
-      <div class="btn btn-outline-primary">
-        <a class="nav-link" href="/resources">Resources</a>
-      </div>
-      <div class="btn btn-outline-primary">
-        <a class="nav-link" href="/log_out">Log Out</a>
+        <div class="dropdown">
+          <a class="navbar-toggler dropdown-toggle" href="#" role="button" data-toggle="dropdown">Navigation<span class="navbar-toggler-icon"></span></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="/dashboard">Home</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/friends">Friends</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/carbon_calculator">Carbon Calculator</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/offsets">Offsets</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/resources">Resources</a>
+            </li>
+            <div class="dropdown-divider">
+            </div>
+            <li>
+              <a class="dropdown-item" href="/log_out">Log Out</a>
+            </li>
+          </ul>
+        </div>
+        <%# end of dropdown div %>
       <% else !current_user %>
-      <a class="nav-link" href="/auth/google_oauth2">Login with Google</a>
-    <% end %>
+        <a class="navbar-brand" href="/resources">Resources</a>
+        <a class="navbar-brand" href="/auth/google_oauth2">Log in with Google</a>
+      <% end %>
+    </div>
   </nav>
+
   <body>
-    <% flash.each do |name, msg| %>
-      <div class= "<%=name%>-flash">
-        <p><%= msg %></p>
-      </div>
-   <% end %>
-    <%= yield %>
+    <div class="container-narrow">
+      <%# Hides div containing flash when no flash messages are present %>
+      <% if !flash.empty? %>
+        <div class="row">
+          <div class="col-sm-4"></div>
+          <div class="col-sm-4">
+            <div class="alert alert-dismissible alert-warning">
+              <% flash.each do |name, msg| %>
+                <div class="<%=name%>-flash">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <p class="text-danger text-center"><%= msg %></p>
+                </div>
+              <% end %>
+            </div>
+          <div class="col-sm-4"></div>
+          </div>
+        </div>
+      <% end %>
+
+      <%# Primary content of site contained here %>
+      <main style="margin-bottom: 65px;">
+        <%= yield %>
+      </main>
+
+      <footer class="bg-light text-center text-lg-start fixed-bottom">
+        <div class="container p-2">
+          <div class='row justify-content-center'>
+            <div>
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAa0AAAB1CAMAAADKkk7zAAAAsVBMVEX///8AAAAAypBbW1umpqZWVlacnJzGxsbv7+8AyY1vb28Ax4kAx4isrKwnJyeHh4fPz8/n5+fc3Nz5+fnq6uq4uLiysrLz8/PAwMBNTU1jY2N6enqGhobU1NQeHh6YmJhERESb5ctQUFA8PDw1NTURERHw/Phn2rMuLi4YGBhra2u47drG8OKQkJAbzZdhYWFX16zW9eqU5Mm/7t470aDn+vSo6NGI4MB23blc2K5v27a8OJFzAAAOVklEQVR4nO1daVviPBQFXLC0OCIquMOMoqMMg4o4+v9/2EvZmpy7JOUFgefJ+aZJ0ySnubm5SygUloHan6sfM1yVl9LklqNsTMiP2rp7Y+GgaOFs3f1ZP07tGTlZd39MVO2+7a27P+vHjj0j++vuj4ndwBYgsLVNCGxtEwJb24TA1jYhsLVNCGxtEwJb24TA1jYhsLVNCGxtEwJb24TA1jYhsLVNCGxtEwJb24TA1jYhsLVNCGxtEwJb24TA1jYhsLVNWBNb9UbDXSkHW51O/pKVwmuAufHdbNWP9p9a05fdn1d2r5W6nmx1XgdRkkT9IeGlM+ynJYPX72Tserdyfu83QB8c7Vb+Hsz++Fa2Dqp7RYKL07pQ3Y+tdhxFpRGiOBraJcPRv8YlUdTGp67ttnekPsyq31nVfwnV66cXzADPHI0XTm/mlQ/NAPLG2YSe6uwfElsQJ3vleN/ZjVW9wtU5YkYyweUx26gXW59JaY7kwSx5iI2ST73t4pM6vDr2mA1BP77MOcApalbdObVHT7N/zWPKJbZwZnfV0Rxj92iVcgvrmNjhhuPDVt+gpFSKv7KSB7sE6DrBHqjffxMq/+LmgJEbRucViVi2ap7R+XKy5dO/DD+g9g+sUFOHkqJCd2UPttpJyULyPCt5xhIQhtghNSfiL1Sm326j4hrg0wHT8Bg2W+d0vpxsFfBl6lr+7ai87xpKilNs1c1WJyohZkWkILJVDUjXKLaU4UGyS7FIJv7MZ4BVru0CspVmjsB8udlCGUyWi4EjqPvbLm6oQjAD7nZuttoxchJPF9czLbEXl99WNAFs4sUdKK+LOzI8x4tbYGu/fg7PudkCpal4Lw+mgFLg1irFlmQ82t+sm60+WVvRdOd6oCX9PJ228AuqNu3i2k3REzeshAK2HklzbraIdJNzE8lnamWB4Q6owhqNmy0i7kpRb1LSozKyZD/rEAgGiA5lLxH/r3GEI6b9sushD7Zu4RFWKx8DhXbLLMxFlk2Xg63OW5uhJJoUMiWl9rO1deEnLGptf6DipVWKrDvA0LUMtvx13J9S4z49QRjbh8pWt5/EHCXJmJEO2bZSIuOk3/UlwQDSak04WXgu0I9iGWwVUDeQdFyN1txjMZ/W2HpIOKpStl7S4heOrZQw4wDtcUgcAxfPoTp4N4g6sxS2UMD9FEaD6rlhFiA7mgdaPmwNBK5Gqt9bWv4msDXiazBvBD9HUB5mUNWRx/wDfFwJW7rykOEOqhnqiPNMzGF+VpDZorpgxsZrWuFVqdAX2ieKuTAN5tpwnok5oAbgZGsuejWr7lNRKZxDESh4TjFwfy+XzTQNka1hIlIRT6wZz/ymNsbc3tHAF7NODu0YrcyzNkBYxC62sqOuxha2QpbwGFdi22Q2JmjdHtUa9UKjVv7Dy5HZ4hTZ6gk8xKV/b1O17/3tX0mShr1ZO26DUoHqUIZFQhD0j3/KowHW0wGi3Jng3lbYNLYqZ8fGN6R6TPBRVsfFSpkOjmtzjCtrkz3mRMlsLBJbXX5pxT30mPR4vpKZYoiniztmeESNMCYPzaNjVKwzI2+Xtw1DIlu/mqCHq2xhbzgdF1+VaUycPkhNm8doZrmYV5HYYjelKH6lnXuN2Krzmtg9xtSAOtRFVkTMh2knSRO1HaaapQJIbBHDqc6Wj44ru1aYXtL343zcGYcZia1P7lDce+HafuFsGtFci8cP/w9tAYW1oUPhHlAUZCmzfVvfPc/WDrOL6r5j7CrVccneNF8ZNSwp3gt2fKO31plOYovRCKOB4MzvMLp+phUSoxF5Hj9Yw1zKbMucXYl7ja3QsGyx/l+dLdRxL8jz+N1khzIq1EUr9+z8+cMW0xJbjMV2QNqcg9IVZT7LQ9d04/oxJhEnR/Eq0U3BXIQcW7yzXmeLSGayOvGEmck60gHFezrWkv8imxJbjHlQCZPp0LWV+U6cxlCFELTMS6frFISQR62QWxZjOKJo8HiLDjUi7uYlxNipxgqc3f2kUkRi6wV1wrhLnjVA7BpJtsXJ/Z8AJ9LQGsmjauwKGiVN2ilb94JN1sGWy8OKnci+TRQh+KQHxPMWCLfoQWmkQCSnJTZRIwU9CHUoY35QEGoOwAJVAYyWKFuSd8oVoYbtgLSS5T66x4QNWIPIFhy4one9nXebrcRciWgMPbeeJIqEoXmjysvquxnwbNfKighbkkXWyZau46K4y74vHGerkB+ynfCfKdxcSwsWV/zPLCLmCOtAiFyahmUokp2ZU6BZIxN2hC3xy3axpboLFC7xuUWuWVVs8F/G6tJ3rRRdM7Lwyy5TjaGyDkW2rZ2zqoozFKrZxoVs3YgDccbqonHS5F0xT6Nm7wpX5aD5t9qGlcLdUrYOSdSubIthFAljFDl94hSnYhfkgCUnW5qHFXWQX+JjLfeMUqi+4/ePXhzH0QgYhsugn9YbVe990C0OZ9FQ1jT93ivoTkPmJkO25AgYJ1va94UbraHfg4wUvegaXFE0793h68Og9+Zu6a03eHh97rLaiHL+1Vz8YhS1L7L3IFtimKhH1gIeArMVrJ2doV09MFvA9+RvycZQNBhZ+wnrYMiD7ACMbMl9dbOFO1A2aXji+Gs8BecYh3rL45uy7UTft6oPo28sNzI1HdhSDm5utuQzhxYUCdrUJrMl+kRw4JYZkPOD5ILIlq12F5SXcs58ycOq+lPA47rQ7yR8E1tEoE93ZuU8W1jC2sqGs1S2pHQT1VcJpwslbFmGF1sdhyFjgnctO1IwhuLqsffeheJnTGQK5lLZkiSCGusKmpaezCbAwdbL8ONz0Isw1YdDO4l6g8+PIeuxFIyhjsQSxhWZD9mparls8XEy2rGSHFWUHshQ2Rr2kvS0pfu2ZkjNwOmJK8HQjQlwImvM2y0dqqDGc/khO+4sly3UZCcmMT1+Db/XRX59SGGrM8hMT5Em5Sa153aPKOGczGx8J6qKOcPKXNgRm/qfbBFLe6rjElXR5gNVkEU2LpmtjhluET/LTUxgJnNFPUoXl27iSCwhgrJSP8gFo6kls8XFTuuuhvwmagYyW5aDyy0KndXRvXPtkdOA2/YCA5xiyWwR61ODuvFQR0fztZTGqUBkC1IiXUb4LlSnaglDDQ6ZxCngTsDES3liyWwx1GjmwzGI1VO3wtcY45jIVsmGa3GRKDX6duwsEY40Thl3ZsW858Cy2aJiD83TREUncl9V4kdnzStCp8TWG4nLYAI/M3yQuAy6FtEsU0arE913ycaNe4E3ls0WTTdREkumQNVEu+dmMjcoLCW2PkjMU6zY4WlyUETJRXV9D916jE5LrBlaIr2GZbNFdFzsKWOJpOF2ovlptm082pzniNWN+HPvCC9MZeoRExIs5uDWDfVHLnjv0tLZ8k9amYNJwBBaN6TOjvkN54jVLUWCptHl6vZpPYfZj/3QaCq/oGmUd9Xj5tLZIg5/ABelSkLoRnsXo2qc2CrMlTuTlcbqllhNb4RXNv/4i1Z0OO7ZzC4qPdjg9UZqM9V+rXn5bLHJL3NwqTR8dhN+pHXqMZ97V3LE6qZ0DYg0fBmwKUF419oY6vgEDQmPaSnISWVqolLoWj5bero37xpmQxcOd42YvBqz/rId3TtWd0pC/GmJw25fyI+MObO96rkXppoo8Sl+7xti72T/xtFGYRVsEbOZBeGoQdTCCe6udptHR83dSyHF2pkbKeWIR3Hva7puhl89KZeV27b0O0pEby7mTc4HWC1fX5erV9akiWHyK2CLEdLMPNpY4P6FFA3+ldlbpPsVUiqSSZa4dEFDurR4/VG5/keMcKdZTxokulbAFpcI6OoGOUPnG5RsJ8SL7ky6xouL39rGkPxhSl/l++O87k6jI7OxAra02xRko9ICVzBkhwHFY/Ih0jUxGnbF1Zd8CF2V7ynR7mbM50Lm6VoFW7KOqwULCluXDIMTzRv5XBK2JfUumiguye4VNIb6TAq1Xutg6VoFW/K9Mlr6SMNxUEO0jGd1T397EHMLLBkXsvc8JdFAiwoQpZpqrq2r6hcBJ4ZWwZao48pB9ikOuEOJiJb5qDOKhrEqzQzs3MoSrVMTSJ+jI9aqnuvyIO4+n5WwJV3t5nALN3J8fPbdPe6YJ3rNycx7wij5Pfq8DSH81hULWc8hDFnmV8KWpOM6Qy68Q+9AU3azRe270VSJoHZ6d5qXYAx1p8d4qxr8HY+rYYvXcVvOwfjmY+AW7GYLL6bOcorpfTWJO7shxwzb8AyAEvznq2GLPwv6uPCPSf47BTWIekR/ols4cyOjKIycglAwhnql4J6ICmWGc0kIrYYtXlv1+3UV19d3yJjRPNjCJZTMTYBoTGQcxgSc7UXXoTKcOpTfezm4fEVscVMu3OxAoYnDQ3Yo8Dp2h7atGolxmrKlpE9EL3s69A+OqSra772WEoV3Vss1c7HFeVg1xw3gVBAXF0IbYF3gP85hZhGM7MjC59gI+mRjdAmYI5dwhSaLppB4sqfce1IgRwdFxwajv0O/o0cuxy0RgJMqCRF4OpVF6fFlJYM04pd+Eo2RfIIn5P1zVtL3Sm0YoVmxof9cDEWDJIMXL6rOYKiTK+OVqh7QzNW3KsoK148HURw3bysXe+fnO0+X+808X66I9/ZDv//QZhiRS1aIWvP28mKv1fp5UbltLhJRvjzgmSvntxfwnfC7vDVgM6DcexSwadDuPQrYNPhe6B+wCVDuPQrYNDgTSwI2CP4/8hSwfjjvDA7YHKj3HgVsGDzuug/YFJAok2B12mDk+8HqgPVCv/coYKPg/kHtgM2B3+/2BWwGHPceBWwSXPceBWwSvH/LOWADgOFyyu8zBawb7nuPAjYH6g9qB2wW1B/UDtgw4M0QC98XFvANwJjoBe6GDPg2QNBnMOhuNBpHJtza+39jlupnXjlYagAAAABJRU5ErkJggg==" alt="Cloverly Logo" width="75px" style="margin:10px" >
+            </div>
+            <div class="col-auto my-auto">
+              Carbon footprint data provided by the <a href="https://www.cloverly.com/">Cloverly API</a>
+            </div>
+            <div class="col-auto my-auto">
+              See the code <a href="https://github.com/Carbon-Knight">here.</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+    <%# end of container-narrow %>
   </body>
 </html>
