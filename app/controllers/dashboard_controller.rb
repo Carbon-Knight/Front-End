@@ -16,7 +16,7 @@ class DashboardController < ApplicationController
   private 
 
   def select_year 
-    return params[:year] if params[:year]
+    return params[:footprint_year] if params[:year]
     Time.now.year
   end
   

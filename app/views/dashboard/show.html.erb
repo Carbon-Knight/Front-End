@@ -22,7 +22,12 @@
   </div>
 
   <div class='select-year-dropdown'>
-    <%= select_tag(:footprint_year, options_for_select(@footprint_years, '1')) %>
+    <% if @footprint_years %>
+      <%= form_tag dashboard_path, method: :get do %>
+        <%= select_tag(:footprint_year, options_for_select(@footprint_years, '1')) %>
+        <%= submit_tag 'Select Footprint Year' %>
+      <% end %>
+    <% end %>
   </div>
 </section>
 

@@ -24,7 +24,7 @@ describe 'User Dashboard' do
         file = File.read('spec/fixtures/get_footprints.json')
         footprints = JSON.parse(file, symbolize_names: true)[:data][:fetchUserFootprints][:footprints]
         year = Time.now.year
-        footprint_years = [2018, 2019]
+        footprint_years = [2018, 2019, 2020, 2021]
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
         allow(FootprintService).to receive(:get_footprints).with(year, @user).and_return(footprints)
@@ -83,7 +83,15 @@ describe 'User Dashboard' do
 
         it 'If a user has data saved, a drop down to view a selected year is visable' do 
           expect(page).to have_css('.select-year-dropdown')
-          expect(page).to have_select(:footprint_year, :options => ['2018', '2019'])
+          expect(page).to have_select(:footprint_year, :options => ['2018', '2019', '2020', '2021'])
+        end
+
+        it 'when a user selects a year, they are redirected to the dashboard and see the graph for that year' do 
+          #TODO add before results for graph 
+          select '2018', :from => :footprint_year
+          click_button 'Select Footprint Year'
+          #TODO add the resulting data for the new graph (will need to stub request for 2018 year)
+          
         end
       end
     end
