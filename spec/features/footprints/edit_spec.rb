@@ -15,6 +15,7 @@ describe 'Footprint edit Page' do
       allow(CarMonthlyMileageService).to receive(:get_car_monthly_mileages).with(@user).and_return(car_monthly_mileages)
       @result = CarMonthlyMileageFacade.get_car_monthly_mileages(@user)
       @first_footprint = @result.first
+      # {"id":1,"month":"June","year":2020,"totalMileage":12345}
     end
 
     it 'Clicking edit link will redirect me to an edit page' do

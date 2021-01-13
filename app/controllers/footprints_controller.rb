@@ -17,8 +17,11 @@ class FootprintsController < ApplicationController
   end
 
   def edit
-    params[:id]
-    # returns id as a string
+    footprint_id = params[:id].to_i
+    footprints = CarMonthlyMileageFacade.get_car_monthly_mileages(current_user)
+    @footprint = footprints.find do |footprint|
+      footprint.id == footprint_id
+    end
   end
 
   private
