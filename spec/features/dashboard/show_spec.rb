@@ -39,7 +39,7 @@ describe 'User Dashboard' do
       it 'Has links from the nav application layout' do
         within '.nav' do
           expect(page).to have_link('Home')
-          expect(page).to have_link('Friends')
+          expect(page).to have_link('Footprints')
           expect(page).to have_link('Carbon Calculator')
           expect(page).to have_link('Add Vehicle')
           expect(page).to have_link('Resources')
