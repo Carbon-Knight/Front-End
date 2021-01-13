@@ -12,9 +12,7 @@
   </div>
 
   <div id="graph">
-    <%= area_chart @footprints %>
-    <!-- <p>You have no footprint data</p> -->
-    -- Graph in the middle --
+    <%= area_chart(@data, xtitle: 'Carbon(kg)',  messages: {empty: "No Data" }) %>
   </div>
 
   <div id="top-five-right">

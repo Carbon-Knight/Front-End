@@ -7,6 +7,6 @@ class Footprint
   def initialize(footprint_info, year)
     @month = footprint_info[:month]
     @year = year
-    @carbon_in_kg = footprint_info[:carbon_in_kg] ? footprint_info[:carbon_in_kg] : 0 
+    @carbon_in_kg = footprint_info[:carbon_in_kg] ? footprint_info[:carbon_in_kg] : 0
   end
 end
