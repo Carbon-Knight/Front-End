@@ -10,10 +10,15 @@ class FootprintsController < ApplicationController
   def create
     # TODO: add error messages and render :new
     FootprintFacade.new_footprint(new_footprint_params, current_user)
-    #Manually reset cache for year 
-    #Rails.cache.delete("params[:year]/footprints")
-    
+    # Manually reset cache for year
+    # Rails.cache.delete("params[:year]/footprints")
+
     redirect_to '/dashboard'
+  end
+
+  def edit
+    params[:id]
+    # returns id as a string
   end
 
   private
