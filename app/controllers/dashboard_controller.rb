@@ -14,10 +14,8 @@ class DashboardController < ApplicationController
     # TODO remove 
     # @data = FootprintFacade.return_data(@year, current_user)
   end
-
   def select_year
     return params[:footprint_year] if params[:footprint_year]
     Time.now.year
   end
-
 end

@@ -59,52 +59,39 @@ describe 'User Dashboard' do
         end
       end
 
-      describe 'footprint graph' do
-        it 'I see my previous footprint data' do
-          expect(page).to have_content("Your Carbon Footprint For #{@year} Is:")
-          expect(page).to have_css('#charts')
-          within('#charts') do
-            expect(page).to have_css('#graph')
-            graph_data = find('#graph').text
-            expect(graph_data).to_not be_empty
-          end
+      it 'I see my previous footprint data' do
+        expect(page).to have_content("Your Carbon Footprint For #{@year} Is:")
+        expect(page).to have_css('#charts')
+        within('#charts') do
+          expect(page).to have_css('#graph')
+          graph_data = find('#graph').text
+          expect(graph_data).to_not be_empty
         end
-        xit 'I see no previous data when I have not entered any data' do
-          expect(page).to have_content('Your Carbon Footprint Is:')
-          expect(page).to have_css('#charts')
-          within('#charts') do
-            expect(page).to have_css('#graph')
-            within('#graph') do
-              expect(page).to have_content('You have no footprint data')
-            end
-          end
-        end
+      end
 
-        it 'If a user has data saved, a drop down to view a selected year is visable' do 
-          year = Time.now.year
-          expect(page).to have_content("Your Carbon Footprint For #{year} Is:")
-          expect(page).to have_css('.select-year-dropdown')
-          expect(page).to have_select(:footprint_year, :options => ['2018', '2019', '2020', '2021'])
-        end
+      it 'If a user has data saved, a drop down to view a selected year is visable' do 
+        year = Time.now.year
+        expect(page).to have_content("Your Carbon Footprint For #{year} Is:")
+        expect(page).to have_css('.select-year-dropdown')
+        expect(page).to have_select(:footprint_year, :options => ['2018', '2019', '2020', '2021'])
+      end
 
-        it 'when a user selects a year, they are redirected to the dashboard and see the graph for that year' do 
-          expect(page).to have_content("Your Carbon Footprint For #{@year} Is:")
-          select '2018', :from => :footprint_year
+      it 'when a user selects a year, they are redirected to the dashboard and see the graph for that year' do 
+        expect(page).to have_content("Your Carbon Footprint For #{@year} Is:")
+        select '2018', :from => :footprint_year
 
-          stub_request(:post, @url).to_return(
-            status: 200,
-            body: File.read('spec/fixtures/get_footprints_2.json')
-          )
+        stub_request(:post, @url).to_return(
+          status: 200,
+          body: File.read('spec/fixtures/get_footprints_2.json')
+        )
 
-          click_button 'Select Footprint Year'
-          year = 2018
-          expect(page).to have_content("Your Carbon Footprint For #{year} Is:")
+        click_button 'Select Footprint Year'
+        year = 2018
+        expect(page).to have_content("Your Carbon Footprint For #{year} Is:")
 
-          #TODO add before results for graph 
+        #TODO add before results for graph 
 
-          #TODO add the resulting data for the new graph (will need to stub request for 2018 year)
-          
-        end
+        #TODO add the resulting data for the new graph (will need to stub request for 2018 year)
       end
     end
   end

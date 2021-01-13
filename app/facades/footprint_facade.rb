@@ -10,14 +10,6 @@ class FootprintFacade
       [new_footprint.month, new_footprint.carbon_in_kg]
     end
   end
-  
-  #TODO do we need this method? 
-  def self.return_data(year, current_user)
-    footprints = get_footprints(year, current_user)
-    footprints.each_with_object({}) do |footprint, hash|
-      hash[footprint[0]] = footprint[1]
-    end
-  end
 
   def self.get_user_footprint_years(current_user)
     FootprintService.get_user_footprint_years(current_user)
