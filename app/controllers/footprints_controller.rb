@@ -7,7 +7,9 @@ class FootprintsController < ApplicationController
     # TODO: add error messages and render :new
     FootprintFacade.new_footprint(new_footprint_params, current_user)
     #Manually reset cache for year 
-    #Rails.cache.delete("params[:year]/footprints")
+
+    #TODO refactor cache to include year input 
+    Rails.cache.delete("footprints/#{current_user.id}/")
     
     redirect_to '/dashboard'
   end
