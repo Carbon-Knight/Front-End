@@ -60,7 +60,7 @@ describe 'User Dashboard' do
           expect(page).to have_css('#charts')
           within('#charts') do
             expect(page).to have_css('#graph')
-            graph_data = find('.graph').text
+            graph_data = find('#graph').text
             expect(graph_data).to_not be_empty
           end
         end

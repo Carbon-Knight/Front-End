@@ -33,7 +33,7 @@ describe 'New Footprint Estimate Page' do
       expect(page).to have_field(:total_mileage)
       expect(page).to have_select('input_month_2i')
       expect(page).to have_select('input_year_1i')
-      
+
       select '2013 Ford Mustang', :from => :car
       fill_in :total_mileage, with: 203
 
