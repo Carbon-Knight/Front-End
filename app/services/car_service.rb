@@ -20,6 +20,7 @@ class CarService
   def self.get_cars(current_user)
     query = "query {
         fetchUserCars(userId: #{current_user.id}) {
+          id,
           make,
           model,
           year,
