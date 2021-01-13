@@ -26,7 +26,7 @@ RSpec.describe FootprintFacade do
     year = '2021'
     current_user = create(:user)
     file = File.read('spec/fixtures/get_footprints.json')
-    footprints = JSON.parse(file, symbolize_names: true)[:data][:fetchUserFootprints][:footprints]
+    footprints = JSON.parse(file, symbolize_names: true)[:data][:fetchUserAggregateFootprintForYear][:footprints]
 
     allow(FootprintService).to receive(:get_footprints).with(year, current_user).and_return(footprints)
 
