@@ -20,6 +20,10 @@
   <div id="top-five-right">
     -- Top 5 on the right
   </div>
+
+  <div class='select-year-dropdown'>
+    <%= select_tag(:footprint_year, options_for_select(@footprint_years, '1')) %>
+  </div>
 </section>
 
 <section id='user-carbon-data'>

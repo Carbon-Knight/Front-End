@@ -33,6 +33,18 @@ class FootprintService
     }"
     make_request(query)[:data][:fetchUserFootprints][:footprints]
   end
+
+  def self.get_user_footprint_years(current_user)
+    query = "query 
+    {
+      fetchUserFootprintYears(input: {
+        userId: #{current_user.id}
+      }) { 
+          years
+        }
+    }"
+    make_request(query)[:data][:fetchUserFootprintYears]
+  end
   
   def self.make_request(query)
     header_hash = {
