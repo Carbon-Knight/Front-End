@@ -1,4 +1,8 @@
 class FootprintsController < ApplicationController
+  def index 
+    
+  end
+
   def new
     @cars = CarsFacade.get_cars(current_user)
   end
