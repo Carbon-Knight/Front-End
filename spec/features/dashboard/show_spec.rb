@@ -78,38 +78,38 @@ describe 'User Dashboard' do
 
       end
     end
-    describe 'Sad Path' do
-      before :each do
-        @user = create(:user, name: 'Mr. Fake')
-        user_data = stub_omniauth
-        @user = User.find_or_create_by(uid: user_data[:uid])
-        @user.name = user_data[:info][:name]
-        @user.email = user_data[:info][:email]
-        @user.token = user_data[:credentials][:token]
-        @user.image = user_data[:info][:image]
-        @user.save
-
-        file = File.read('spec/fixtures/get_null_footprints.json')
-        footprints = JSON.parse(file, symbolize_names: true)[:data][:fetchUserFootprints][:footprints]
-        year = Time.now.year
-        footprint_years = [2018, 2019, 2020, 2021]
-
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
-        allow(FootprintService).to receive(:get_footprints).with(year, @user).and_return(footprints)
-        allow(FootprintFacade).to receive(:get_user_footprint_years).with(@user).and_return(footprint_years)
-
-        visit dashboard_path
-      end
-      xit 'I see no previous data when I have not entered any data' do
-        expect(page).to have_content('Your Carbon Footprint Is:')
-        expect(page).to have_css('#charts')
-        within('#charts') do
-          expect(page).to have_css('#graph')
-          within('#graph') do
-            expect(page).to have_content('No Data')
-          end
-        end
-      end
-    end
+    # describe 'Sad Path' do
+    #   before :each do
+    #     @user = create(:user, name: 'Mr. Fake')
+    #     user_data = stub_omniauth
+    #     @user = User.find_or_create_by(uid: user_data[:uid])
+    #     @user.name = user_data[:info][:name]
+    #     @user.email = user_data[:info][:email]
+    #     @user.token = user_data[:credentials][:token]
+    #     @user.image = user_data[:info][:image]
+    #     @user.save
+    #
+    #     file = File.read('spec/fixtures/get_null_footprints.json')
+    #     footprints = JSON.parse(file, symbolize_names: true)[:data][:fetchUserFootprints][:footprints]
+    #     year = Time.now.year
+    #     footprint_years = [2018, 2019, 2020, 2021]
+    #
+    #     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+    #     allow(FootprintService).to receive(:get_footprints).with(year, @user).and_return(footprints)
+    #     allow(FootprintFacade).to receive(:get_user_footprint_years).with(@user).and_return(footprint_years)
+    #
+    #     visit dashboard_path
+    #   end
+    #   xit 'I see no previous data when I have not entered any data' do
+    #     expect(page).to have_content('Your Carbon Footprint Is:')
+    #     expect(page).to have_css('#charts')
+    #     within('#charts') do
+    #       expect(page).to have_css('#graph')
+    #       within('#graph') do
+    #         expect(page).to have_content('No Data')
+    #       end
+    #     end
+    #   end
+    # end
   end
 end
