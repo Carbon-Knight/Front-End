@@ -9,7 +9,7 @@ class CarMonthlyMileageService
           }
         }
       }"
-      make_request(query)
+      make_request(query)[:data][:fetchAllUserCarMonthlyMileages]
   end
 
   def self.make_request(query)

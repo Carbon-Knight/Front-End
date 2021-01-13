@@ -1,7 +1,7 @@
 class Footprint
-  # TODO REmove: I changed the attributes to match up what is needed for our graph 
-  attr_reader :month, 
-              :year, 
+  # TODO: REmove: I changed the attributes to match up what is needed for our graph
+  attr_reader :month,
+              :year,
               :carbon_in_kg
 
   def initialize(footprint_info, year)

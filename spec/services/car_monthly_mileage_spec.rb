@@ -14,16 +14,12 @@ RSpec.describe FootprintService do
       current_user = create(:user)
 
       response = CarMonthlyMileageService.get_car_monthly_mileages(current_user)
-      first_data = response[:data][:fetchAllUserCarMonthlyMileages][0]
-      expect(response).to be_a(Hash)
-      expect(response).to have_key(:data)
-      expect(response[:data]).to have_key(:fetchAllUserCarMonthlyMileages)
-      expect(response[:data][:fetchAllUserCarMonthlyMileages]).to be_an(Array)
-      expect(first_data).to be_a(Hash)
-      expect(first_data).to have_key(:id)
-      expect(first_data).to have_key(:month)
-      expect(first_data).to have_key(:year)
-      expect(first_data).to have_key(:totalMileage)
+      first = response[0]
+      expect(first).to be_a(Hash)
+      expect(first).to have_key(:id)
+      expect(first).to have_key(:month)
+      expect(first).to have_key(:year)
+      expect(first).to have_key(:totalMileage)
     end
   end
 end
