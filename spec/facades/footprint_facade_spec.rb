@@ -38,4 +38,14 @@ RSpec.describe FootprintFacade do
       expect(result[1]).to be_a(Numeric)
     end
   end
+
+  it 'returns an array of years' do 
+    current_user = create(:user)
+    years = [2010, 2011, 2012]
+    allow(FootprintService).to receive(:get_user_footprint_years).with(current_user).and_return(years)
+    result = FootprintFacade.get_user_footprint_years(current_user)
+
+    expect(result).to be_a(Array)
+    expect(result[0]).to be_a(Integer)
+  end
 end

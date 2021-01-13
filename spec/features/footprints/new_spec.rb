@@ -8,7 +8,7 @@ describe 'New Footprint Estimate Page' do
       @user = create(:user, uid: "3")
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
-
+      
       stub_request(:post, url).to_return(
         status: 200,
         body: File.read('spec/fixtures/get_footprints.json')

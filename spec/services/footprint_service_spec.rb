@@ -50,4 +50,28 @@ RSpec.describe FootprintService do
       expect(response[:data][:createFootprintAndCarMonthlyMileage][:footprint][:id]).to eq('1')
     end
   end
+
+  describe 'Get User Footprint Years' do 
+    let(:url) { ENV['HOST_URL']}
+    
+    before do
+      stub_request(:post, url).to_return(
+        status: 200,
+        body: File.read('spec/fixtures/get_footprint_years.json')
+      )
+    end
+
+    it 'returns an array of years as integers' do 
+      current_user = create(:user)
+
+      response = FootprintService.get_user_footprint_years(current_user)
+
+      expect(response).to be_a(Array)
+
+      response.each do |r|
+        expect(r).to be_a(Integer)
+      end
+    end
+
+  end
 end
