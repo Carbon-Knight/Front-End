@@ -28,6 +28,7 @@ class FootprintsController < ApplicationController
       flash[:error] = 'You need to fill in the new total mileage'
       redirect_to edit_footprint_path
     else
+      Rails.cache.delete("footprints/#{current_user.id}/#{car_monthly_mileage.year}")
       CarMonthlyMileageFacade.update_car_monthly_mileage(car_monthly_mileage, new_footprint_params)
       redirect_to footprints_path
     end
