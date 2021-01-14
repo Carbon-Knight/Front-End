@@ -31,7 +31,6 @@ RSpec.describe FootprintFacade do
     allow(FootprintService).to receive(:get_footprints).with(year, current_user).and_return(footprints)
 
     results = FootprintFacade.get_footprints(year, current_user)
-
     expect(results).to be_a(Array)
     results.each do |result|
       expect(result[0]).to be_a(String)
@@ -39,7 +38,7 @@ RSpec.describe FootprintFacade do
     end
   end
 
-  it 'returns an array of years' do 
+  it 'returns an array of years' do
     current_user = create(:user)
     years = [2010, 2011, 2012]
     allow(FootprintService).to receive(:get_user_footprint_years).with(current_user).and_return(years)
@@ -47,5 +46,15 @@ RSpec.describe FootprintFacade do
 
     expect(result).to be_a(Array)
     expect(result[0]).to be_a(Integer)
+  end
+
+  it 'Returns the sum of carbon in kg for the year' do
+    year = '2021'
+    current_user = create(:user)
+    file = File.read('spec/fixtures/get_footprints.json')
+    footprints = JSON.parse(file, symbolize_names: true)[:data][:fetchUserAggregateFootprintForYear][:footprints]
+    allow(FootprintService).to receive(:get_footprints).with(year, current_user).and_return(footprints)
+    result = FootprintFacade.get_total_carbon_for_year(year, current_user)
+    expect(result).to be_a(Float)
   end
 end

@@ -94,13 +94,12 @@ describe 'User Dashboard' do
         #TODO add the resulting data for the new graph
       end
       it 'I see my total carbon for the year' do
+        year = 2021
         expect(page).to have_css('.total-carbon-year')
-
-        within('.total_carbon_for_year') do
-          expect(page).to have_content('Total:')
-
+        save_and_open_page
+        within('.total-carbon-year') do
+          expect(page).to have_content("Total(#{year}): 95.62")
         end
-
       end
     end
   end
