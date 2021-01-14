@@ -6,8 +6,10 @@
   </div>
   <div>
     <h3 class="text-center"> Your Carbon Footprint For <%= @year %> Is: </h3>
-    <div class="total-carbon-year">
-      <p>Total(<%= @year %>): <%= @total_carbon_for_year %> </p>
+    <div class="form-group row justify-content-center">
+      <div class="total-carbon-year">
+        <h5>Total: <%= @total_carbon_for_year %> </h5>
+      </div>
     </div>
 </section>
 
@@ -23,8 +25,10 @@
  <div class='select-year-dropdown'>
    <% if @footprint_years %>
     <%= form_tag dashboard_path, method: :get do %>
-      <%= select_tag(:footprint_year, options_for_select(@footprint_years, '1')) %>
-      <%= submit_tag 'Select Footprint Year' %>
+    <div class='form-group row justify-content-center'>
+        <%= select_tag(:footprint_year, options_for_select(@footprint_years, '1')) %>
+        <%= submit_tag 'Select Footprint Year' %>
+      </div>
     <% end %>
    <% end %>
   </div>
@@ -33,9 +37,6 @@
 <section id='user-carbon-data' class="text-center p-5">
   <div class='container-lg'>
     <button class="btn btn-group">
-      <button class="btn btn-success">
-        <a class="btn btn-success" href="/leader_board">Visit Leader Board Here</a>
-      </button>
       <button class="btn btn-success">
         <a class="btn btn-success" href='/carbon_calculator'>Input Vehicle Data Here</a>
       </button>
