@@ -40,8 +40,9 @@ RSpec.describe FootprintService do
       car_info = {make:"subaru",mpg:25,fuelType:"gasoline",model:"forester",year:2010}
       car = Car.new(car_info)
 
-      footprint_info = {car_id: car, total_mileage: 204, month: 'February', year: '2020'}
+      footprint_info = {car_id: car, total_mileage: 204, date: {month: '2', year: '2020'}}
       response = FootprintService.new_footprint(footprint_info, current_user)
+
       expect(response).to be_a(Hash)
       expect(response[:data]).to be_a(Hash)
       expect(response[:data][:createFootprintAndCarMonthlyMileage]).to be_a(Hash)
@@ -49,5 +50,29 @@ RSpec.describe FootprintService do
       expect(response[:data][:createFootprintAndCarMonthlyMileage][:footprint][:id]).to be_a(String)
       expect(response[:data][:createFootprintAndCarMonthlyMileage][:footprint][:id]).to eq('1')
     end
+  end
+
+  describe 'Get User Footprint Years' do 
+    let(:url) { ENV['HOST_URL']}
+    
+    before do
+      stub_request(:post, url).to_return(
+        status: 200,
+        body: File.read('spec/fixtures/get_footprint_years.json')
+      )
+    end
+
+    it 'returns an array of years as integers' do 
+      current_user = create(:user)
+
+      response = FootprintService.get_user_footprint_years(current_user)
+
+      expect(response).to be_a(Array)
+
+      response.each do |r|
+        expect(r).to be_a(Integer)
+      end
+    end
+
   end
 end

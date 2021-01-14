@@ -4,6 +4,14 @@ describe 'Welcome Page' do
   describe 'Index' do
     before :each do
       stub_omniauth
+
+      url = ENV['HOST_URL']
+      stub_request(:post, url).to_return(
+        status: 200,
+        body: File.read('spec/fixtures/get_footprints.json')
+      )
+      @user = create(:user)
+      allow(FootprintFacade).to receive(:get_user_footprint_years).with(@user).and_return([2018, 2019, 2020, 2021])
       visit root_path
     end
 
@@ -14,6 +22,8 @@ describe 'Welcome Page' do
     end
 
     it 'Logs in/ registers with google OAuth' do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
       click_link 'Log in with Google'
       expect(current_path).to eq(dashboard_path)
     end

@@ -20,13 +20,18 @@ describe 'User Dashboard' do
         @user.token = user_data[:credentials][:token]
         @user.image = user_data[:info][:image]
         @user.save
+        @url = ENV['HOST_URL']
 
-        file = File.read('spec/fixtures/get_footprints.json')
-        footprints = JSON.parse(file, symbolize_names: true)[:data][:fetchUserFootprints][:footprints]
-        year = Time.now.year
+        @year = Time.now.year
+        footprint_years = [2018, 2019, 2020, 2021]
+
+        stub_request(:post, @url).to_return(
+          status: 200,
+          body: File.read('spec/fixtures/get_footprints.json')
+        )
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
-        allow(FootprintService).to receive(:get_footprints).with(year, @user).and_return(footprints)
+        allow(FootprintFacade).to receive(:get_user_footprint_years).with(@user).and_return(footprint_years)
 
         visit dashboard_path
       end
@@ -62,30 +67,39 @@ describe 'User Dashboard' do
         end
       end
 
-      describe 'footprint graph' do
-        it 'I see my previous footprint data' do
-          expect(page).to have_content('Your Carbon Footprint Is:')
-          expect(page).to have_css('#charts')
-          within('#charts') do
-            expect(page).to have_css('#graph')
-            within('#graph') do
-              # TODO:
-              # expect(page).to have month data etc etc
-              # mock a new footprint
-              # expect(page).to_not have_content('You have no footprint data')
-            end
-          end
+      it 'I see my previous footprint data' do
+        expect(page).to have_content("Your Carbon Footprint For #{@year} Is:")
+        expect(page).to have_css('#charts')
+        within('#charts') do
+          expect(page).to have_css('#graph')
+          graph_data = find('#graph').text
+          expect(graph_data).to_not be_empty
         end
-        it 'I see no previous data when I have not entered any data' do
-          expect(page).to have_content('Your Carbon Footprint Is:')
-          expect(page).to have_css('#charts')
-          within('#charts') do
-            expect(page).to have_css('#graph')
-            within('#graph') do
-              expect(page).to have_content('You have no footprint data')
-            end
-          end
-        end
+      end
+
+      it 'If a user has data saved, a drop down to view a selected year is visable' do 
+        year = Time.now.year
+        expect(page).to have_content("Your Carbon Footprint For #{year} Is:")
+        expect(page).to have_css('.select-year-dropdown')
+        expect(page).to have_select(:footprint_year, :options => ['2018', '2019', '2020', '2021'])
+      end
+
+      it 'when a user selects a year, they are redirected to the dashboard and see the graph for that year' do 
+        expect(page).to have_content("Your Carbon Footprint For #{@year} Is:")
+        #TODO add test for specific results before change graph
+
+        select '2018', :from => :footprint_year
+
+        stub_request(:post, @url).to_return(
+          status: 200,
+          body: File.read('spec/fixtures/get_footprints_2.json')
+        )
+
+        click_button 'Select Footprint Year'
+        year = 2018
+        expect(page).to have_content("Your Carbon Footprint For #{year} Is:")
+
+        #TODO add the resulting data for the new graph 
       end
     end
   end

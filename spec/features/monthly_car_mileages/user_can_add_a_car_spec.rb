@@ -53,7 +53,7 @@ describe 'Add a Car Form Page' do
       expect(current_path).to eq(carbon_calculator_path)
 
       expect(page).to have_css('.calculate-footprint')
-      expect(page).to have_select(:car, :options => ['2013 Ford Mustang'])
+      expect(page).to have_select(:car_id, :options => ['2013 Ford Mustang'])
 
     end
 
