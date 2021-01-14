@@ -3,7 +3,6 @@ class CarMonthlyMileage
               :month,
               :year,
               :total_mileage
-
   def initialize(data)
     @id = data[:id]
     @month = data[:month]

@@ -22,7 +22,7 @@ RSpec.describe FootprintService do
       expect(first[:month]).to be_a(String)
       expect(first[:month]).to eq('January')
       expect(response.last[:month]).to eq('December')
-      expect(first[:carbon_in_kg]).to be_a(Float)
+      expect(first[:carbonInKg]).to be_a(Float)
     end
   end
   describe 'Create new footprint' do

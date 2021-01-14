@@ -21,8 +21,7 @@ class FootprintService
       (
         userId: #{current_user.id},
         year: #{year}
-      ) 
-        {
+      ) {
           footprints 
           { 
             month 
