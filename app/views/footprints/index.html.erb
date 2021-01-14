@@ -17,17 +17,17 @@
 
 <% unless @car_monthly_mileages.empty? %>
   <div class='container text-center footprint-details'>
-    <div class='row'>
+    <div class='row justify-content-center'>
       <% @car_monthly_mileages.each do |car_monthly_mileage|%>
         <div class='card gutter10 footprint-<%= car_monthly_mileage.id %>'>
           <div class='card-body'>
             <h5 class='card-title month'>
               <%= car_monthly_mileage.month %>
             </h5>
-            <ul class='car-monthly-mileage-<%= car_monthly_mileage.month %>'>
-              <li class='total-mileage'>Total Mileage: <%= car_monthly_mileage.total_mileage %></li>
-              <li class='year'>Year: <%= car_monthly_mileage.year %></li>
-            </ul>
+            <div class='car-monthly-mileage-<%= car_monthly_mileage.month %>'>
+              <p class='total-mileage'>Total Mileage: <%= car_monthly_mileage.total_mileage %></p>
+              <p class='year'>Year: <%= car_monthly_mileage.year %></p>
+            </div>
             <button class="btn btn-group">
               <button class="btn btn-success">
                 <a class="btn btn-success" href="/footprints/<%= car_monthly_mileage.id %>/edit">Edit Footprint</a>
