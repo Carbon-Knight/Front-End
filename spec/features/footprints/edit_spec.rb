@@ -26,6 +26,16 @@ describe 'Footprint edit Page' do
       end
       expect(page).to have_css('#edit-footprint-header')
     end
+
+    it 'I see a form to edit with proper info' do
+      visit "/footprints/#{@first_footprint.id}/edit"
+      within ".edit-footprint-form" do
+        expect(page).to have_css('.footprint-month')
+        expect(page).to have_content(@first_footprint.month)
+        expect(page).to have_css('.footprint-year')
+        expect(page).to have_content(@first_footprint.year)
+      end
+    end
   end
 end
 
