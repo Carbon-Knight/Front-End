@@ -12,7 +12,7 @@ class FootprintFacade
   end
 
   def self.get_user_footprint_years(current_user)
-    Footprint.get_user_footprint_years(current_user)
+    FootprintService.get_user_footprint_years(current_user)
   end
 
   def self.get_total_carbon_for_year(footprints)
