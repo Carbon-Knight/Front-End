@@ -49,6 +49,8 @@ describe 'Footprint edit Page' do
   end
 end
 
+
+
 # As a user
 # On the update a footprint/car monthly mileage page
 # When I fill in a new total mileage
