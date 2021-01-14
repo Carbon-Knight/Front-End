@@ -8,6 +8,7 @@ describe 'New Footprint Estimate Page' do
       @user = create(:user, uid: '3')
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+      allow(FootprintFacade).to receive(:get_user_footprint_years).with(@user).and_return([2018, 2019, 2020, 2021])
       
       stub_request(:post, url).to_return(
         status: 200,
@@ -67,6 +68,7 @@ describe 'New Footprint Estimate Page' do
       )
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+      allow(FootprintFacade).to receive(:get_user_footprint_years).with(@user).and_return([2018, 2019, 2020, 2021])
     end
 
     it 'I can click link on dashboard and I am taken to the form' do
@@ -96,7 +98,7 @@ describe 'New Footprint Estimate Page' do
       car_3 = { make: 'Dodge', mpg: 15, fuelType: 'diesel', model: 'Ram', year: 2010 }
       @cars = [Car.new(car_1), Car.new(car_2), Car.new(car_3)]
       allow(CarsFacade).to receive(:get_cars).with(@user).and_return(@cars)
-
+      
       visit carbon_calculator_path
     end
 

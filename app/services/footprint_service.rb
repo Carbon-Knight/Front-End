@@ -36,13 +36,12 @@ class FootprintService
   def self.get_user_footprint_years(current_user)
     query = "query 
     {
-      fetchUserFootprintYears(input: {
-        userId: #{current_user.id}
-      }) { 
+      fetchUserFootprintYears(userId: #{current_user.id}) 
+      { 
           years
         }
     }"
-    make_request(query)[:data][:fetchUserFootprintYears]
+    make_request(query)[:data][:fetchUserFootprintYears][:years]
   end
   
   def self.make_request(query)
