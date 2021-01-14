@@ -44,9 +44,9 @@ describe 'User Dashboard' do
       it 'Has links from the nav application layout' do
         within '.nav' do
           expect(page).to have_link('Home')
-          expect(page).to have_link('Friends')
+          expect(page).to have_link('Footprints')
           expect(page).to have_link('Carbon Calculator')
-          expect(page).to have_link('Offsets')
+          expect(page).to have_link('Add Vehicle')
           expect(page).to have_link('Resources')
           expect(page).to have_link('Log Out')
         end
@@ -57,6 +57,13 @@ describe 'User Dashboard' do
           expect(page).to have_link('Visit Leader Board Here')
           expect(page).to have_link('Input Vehicle Data Here')
           expect(page).to have_link('View Previous Footprints')
+        end
+      end
+
+      it 'I click resources link in nav bar and am taken to that page' do
+        within '.nav' do
+          click_link 'Resources'
+          expect(current_path).to eq('/resources')
         end
       end
 
