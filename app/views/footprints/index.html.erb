@@ -1,0 +1,41 @@
+<div class="jumbotron text-center" style='margin-bottom: .3rem'>
+  <div class='footprint-header'>
+    <h5 class="display-4" id='resources-header'>
+      Your Previous Carbon Footprints</h5>
+  </div>
+</div>
+
+<div class='container-lg text-center'>
+  <% if @car_monthly_mileages.empty? %>
+    <section class='no-cmm-alert'>
+      <div class="alert alert-dismissible alert-primary">
+        <strong>Oh snap!</strong> You don't have any carbon footprints yet. <a href='/carbon_calculator' class="alert-link">Add a new footprint</a> first!
+      </div>
+    </section> 
+  <% end%>
+</div>
+
+<% unless @car_monthly_mileages.empty? %>
+  <div class='container text-center footprint-details'>
+    <div class='row'>
+      <% @car_monthly_mileages.each do |car_monthly_mileage|%>
+        <div class='card gutter10 footprint-<%= car_monthly_mileage.id %>'>
+          <div class='card-body'>
+            <h5 class='card-title month'>
+              <%= car_monthly_mileage.month %>
+            </h5>
+            <ul class='car-monthly-mileage-<%= car_monthly_mileage.month %>'>
+              <li class='total-mileage'>Total Mileage: <%= car_monthly_mileage.total_mileage %></li>
+              <li class='year'>Year: <%= car_monthly_mileage.year %></li>
+            </ul>
+            <button class="btn btn-group">
+              <button class="btn btn-success">
+                <a class="btn btn-success" href="/footprints/<%= car_monthly_mileage.id %>/edit">Edit Footprint</a>
+              </button>
+            </button>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -21,8 +21,7 @@ class FootprintService
       (
         userId: #{current_user.id},
         year: #{year}
-      ) 
-        {
+      ) {
           footprints 
           { 
             month 
@@ -43,13 +42,13 @@ class FootprintService
     }"
     make_request(query)[:data][:fetchUserFootprintYears][:years]
   end
-  
+
   def self.make_request(query)
     header_hash = {
-      "Content-Type": "application/json"
+      "Content-Type": 'application/json'
     }
-  
-    result = Faraday.post(ENV['HOST_URL'], JSON.generate({query: query}), header_hash)
+
+    result = Faraday.post(ENV['HOST_URL'], JSON.generate({ query: query }), header_hash)
     JSON.parse(result.body, symbolize_names: true)
   end
 end

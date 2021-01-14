@@ -1,4 +1,8 @@
 class FootprintsController < ApplicationController
+  def index
+    @car_monthly_mileages = CarMonthlyMileageFacade.get_car_monthly_mileages(current_user)
+  end
+
   def new
     @cars = CarsFacade.get_cars(current_user)
   end

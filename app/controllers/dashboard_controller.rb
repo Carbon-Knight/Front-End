@@ -4,7 +4,6 @@ class DashboardController < ApplicationController
     @year = select_year
     # To display the years available for a user to select based on their record:
     # TODO be implemented 
-<<<<<<< Updated upstream
     @footprint_years = Rails.cache.fetch("footprint_years/#{current_user.id}/#{Time.now.year}") do
       FootprintFacade.get_user_footprint_years(current_user)
     end
