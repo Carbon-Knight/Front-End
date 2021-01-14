@@ -26,6 +26,7 @@ class CarMonthlyMileageService
           }
         }
       }"
+    make_request(query)
   end
 
   def self.make_request(query)
