@@ -54,5 +54,14 @@ describe 'Footprint edit Page' do
         expect(first_footprint.total_mileage).to eq(932)
       end
     end
+
+    it 'I get an error if I dont fill in the field' do
+      visit "/footprints/#{@first_footprint.id}/edit"
+      fill_in :total_mileage, with: ''
+      click_button 'Save'
+
+      expect(current_path).to eq("/footprints/#{@first_footprint.id}/edit")
+      expect(page).to have_content('You need to fill in the new total mileage')
+    end
   end
 end
