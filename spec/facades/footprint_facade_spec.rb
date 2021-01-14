@@ -51,10 +51,11 @@ RSpec.describe FootprintFacade do
   it 'Returns the sum of carbon in kg for the year' do
     year = '2021'
     current_user = create(:user)
-    file = File.read('spec/fixtures/get_footprints.json')
-    footprints = JSON.parse(file, symbolize_names: true)[:data][:fetchUserAggregateFootprintForYear][:footprints]
-    allow(FootprintService).to receive(:get_footprints).with(year, current_user).and_return(footprints)
-    result = FootprintFacade.get_total_carbon_for_year(year, current_user)
+    footprints = [["January", 20.0], ["February", 20],["March", 20],
+    ["April", 20],["May", 20.2],["June", 20],["July", 10.5],
+    ["August", 10],["September", 10],["October", 10],["November", 10],
+    ["December", 10]]
+    result = FootprintFacade.get_total_carbon_for_year(footprints)
     expect(result).to be_a(Float)
   end
 end

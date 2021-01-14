@@ -8,4 +8,10 @@ class Footprint
     @year = year
     @carbon_in_kg = footprint_info[:carbonInKg] ? footprint_info[:carbonInKg] : 0
   end
+
+  def self.total_carbon_for_year(footprints)
+    footprints.sum do |footprint|
+      footprint[1]
+    end
+  end
 end
