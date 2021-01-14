@@ -19,7 +19,7 @@
   <div class='container text-center footprint-details'>
     <div class='row justify-content-center'>
       <% @car_monthly_mileages.each do |car_monthly_mileage|%>
-        <div class='card gutter10 footprint-<%= car_monthly_mileage.id %>'>
+        <div class='card bg-light gutter10 footprint-<%= car_monthly_mileage.id %>'>
           <div class='card-body'>
             <h5 class='card-title month'>
               <%= car_monthly_mileage.month %>
