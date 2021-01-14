@@ -8,6 +8,6 @@ class CarMonthlyMileage
     @id = data[:id]
     @month = data[:month]
     @year = data[:year]
-    @total_mileage = data[:total]
+    @total_mileage = data[:totalMileage]
   end
 end

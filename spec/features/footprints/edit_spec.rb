@@ -43,29 +43,16 @@ describe 'Footprint edit Page' do
           body: File.read('spec/fixtures/updated_car_monthly_mileages.json')
         )
         click_button 'Save'
-
         expect(current_path).to eq('/footprints')
-        
-        within ".footprint-#{@first_footprint.id}" do
-          expect(page).to have_content('Total Mileage: 932')
-        end
-        expect(@first_footprint.total_mileage).to eq(932)
+
+        file = File.read('spec/fixtures/updated_car_monthly_mileages.json')
+        new_car_monthly_mileages = JSON.parse(file, symbolize_names: true)
+        allow(CarMonthlyMileageService).to receive(:get_car_monthly_mileages).with(@user).and_return(new_car_monthly_mileages)
+        result = CarMonthlyMileageFacade.get_car_monthly_mileages(@user)
+        first_footprint = result.first
+
+        expect(first_footprint.total_mileage).to eq(932)
       end
     end
   end
 end
-
-
-
-# As a user
-# On the update a footprint/car monthly mileage page
-# When I fill in a new total mileage
-# And click the "Update" button
-# I am taken back to my dashboard
-# And I see a graph with that footprint's updated information
-
-# As a user
-# When I click an update link from my footprints index page
-# I am taken to an update form
-# Where I see that footprint/car monthly mileages data prepopulated
-# And I can fill in a new total mileage
