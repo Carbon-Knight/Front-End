@@ -42,10 +42,10 @@ describe 'User Dashboard' do
       end
 
       it 'Has links from the nav application layout' do
-        within first '.nav' do
+        within '.nav' do
           expect(page).to have_link('Home')
           expect(page).to have_link('Friends')
-          expect(page).to have_link('Calculate Footprint')
+          expect(page).to have_link('Carbon Calculator')
           expect(page).to have_link('Offsets')
           expect(page).to have_link('Resources')
           expect(page).to have_link('Log Out')
@@ -55,7 +55,7 @@ describe 'User Dashboard' do
       it 'has links for the leader board and carbon calculator' do
         within '#user-carbon-data' do
           expect(page).to have_link('Visit Leader Board Here')
-          expect(page).to have_link('Input Data Here')
+          expect(page).to have_link('Input Vehicle Data Here')
         end
       end
 
@@ -78,6 +78,8 @@ describe 'User Dashboard' do
 
       it 'when a user selects a year, they are redirected to the dashboard and see the graph for that year' do 
         expect(page).to have_content("Your Carbon Footprint For #{@year} Is:")
+        #TODO add test for specific results before change graph
+
         select '2018', :from => :footprint_year
 
         stub_request(:post, @url).to_return(
@@ -89,9 +91,7 @@ describe 'User Dashboard' do
         year = 2018
         expect(page).to have_content("Your Carbon Footprint For #{year} Is:")
 
-        #TODO add before results for graph 
-
-        #TODO add the resulting data for the new graph (will need to stub request for 2018 year)
+        #TODO add the resulting data for the new graph 
       end
     end
   end

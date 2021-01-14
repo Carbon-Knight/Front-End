@@ -1,0 +1,75 @@
+<div class="jumbotron text-center">
+  <h5 class="display-4">
+    Calculate Your Car's Footprint for a Month</h5>
+</div>
+
+<div class='container-lg text-center'>
+  <% if @cars.empty? %>
+    <section class='no-cars-alert'>
+      <div class="alert alert-dismissible alert-primary">
+        <strong>Oh snap!</strong> You haven't added any cars yet. <a href='/cars/new' class="alert-link">Add a car</a> to calculate your footprint.
+      </div>
+    </section> 
+  <% end%>
+</div>
+
+<% unless @cars.empty? %>
+  <form class='p-3'>
+    <section class='create-monthly-mileage'>
+      <%= form_tag car_monthly_mileages_new_path, method: :post do %>
+      <div class="form-group container-lg text-center">
+        <div class='select-car'>
+          <select class="form-select form-select-lg mb-3 p-2" id="exampleSelect1">
+            <option selected>Select Car</option>
+            <% @cars.map do |car| %>
+              <option><%= "#{car.year} #{car.make}  #{car.model} " %></option>
+            <% end %>
+          </select>
+        </div>
+        <div class='select-month'>
+          <select class="form-select form-select-lg mb-3 p-2" id="exampleSelect1">
+            <option selected>Select Month</option>
+            <option>January</option>
+            <option>February</option>
+            <option>March</option>
+            <option>April</option>
+            <option>May</option>
+            <option>June</option>
+            <option>July</option>
+            <option>August</option>
+            <option>September</option>
+            <option>October</option>
+            <option>November</option>
+            <option>December</option>
+          </select>
+        </div>
+        <div class='select-year'>
+          <select class="form-select form-select-lg mb-3 p-2" id="exampleSelect1">
+            <option selected>Select Year</option>
+            <option>2021</option>
+            <option>2020</option>
+            <option>2019</option>
+            <option>2018</option>
+            <option>2017</option>
+            <option>2016</option>
+            <option>2015</option>
+            <option>2014</option>
+            <option>2013</option>
+            <option>2012</option>
+            <option>2011</option>
+          </select>
+        </div><br>
+        <%= submit_tag 'Create Footprint for Month' %>
+        </div>
+      <% end %>
+    </section>
+  </form>
+<% end %>
+
+<section id='user-carbon-data' class="text-center p-3 pb-5">
+  <div class='container-lg'>
+    <button class="btn btn-success">
+      <a class="btn btn-success" href='/cars/new'>Add a Car</a>
+    </button>
+  </div>
+</section>

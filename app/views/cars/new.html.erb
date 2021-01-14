@@ -1,23 +1,59 @@
-<center>
-  <h1>Add a New Vehicle</h1>
+<center style="margin-bottom: 50px;">
+  <div class="jumbotron">
+    <h1 class="display-3">Add a New Vehicle</h1>
+  </div>
 </center>
 
 <section class="new_car_form">
-  <%= form_tag "/cars", method: :post do %>
-    <%= label_tag :make %>
-    <%= text_field_tag :make, params[:make]%>
+  <div class="row">
+    <%# col-sm on either side centers form on page %>
+    <div class="col-sm">
+    </div>
+    <div class="col-sm">
+      <div class="container">
+        <%= form_tag "/cars", method: :post do %>
+          <div class="form-group row">
+            <%= label_tag :make, nil, class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-10">
+              <%= text_field_tag :make, params[:make], class: "form-control" %>
+            </div>
+          </div>
 
-    <%= label_tag :model %>
-    <%= text_field_tag :model, params[:model] %>
+          <div class="form-group row">
+            <%= label_tag :model, nil, class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-10">
+              <%= text_field_tag :model, params[:model], class: "form-control" %>
+            </div>
+          </div>
 
-    <%= label_tag :year %>
-    <%= number_field_tag :year, params[:year], placeholder: "input integer"  %>
+          <div class="form-group row">
+            <%= label_tag :year, nil, class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-10">
+              <%= number_field_tag :year, params[:year], placeholder: "input integer", class: "form-control" %>
+            </div>
+          </div>
 
-    <%= label_tag :fuel_efficiency %>
-    <%= number_field_tag :mpg, params[:mpg], placeholder: "input mpg as integer" %>
+          <div class="form-group row">
+            <%= label_tag :fuel_efficiency, nil, class: "col-sm-2 col-form-label"  %>
+            <div class="col-sm-10">
+              <%= number_field_tag :mpg, params[:mpg], placeholder: "input mpg as integer", class: "form-control" %>
+            </div>
+          </div>
 
-    <%= select_tag(:fuel_type, options_for_select([['Select Fuel Type'], ['gasoline'],["diesel"]], params[:fuel_type]))%> <br>
+          <div class="form-group row justify-content-center">
+            <%= label_tag :fuel_type, nil, class: "col-sm-2 col-form-label"  %>
+            <div class="col-sm-10">
+              <%= select_tag(:fuel_type, options_for_select([['Select Fuel Type'], ['gasoline'],["diesel"]], params[:fuel_type]), class: "form-control")%> <br>
+            </div>
+          </div>
 
-    <%= submit_tag 'Add Vehicle' %>
-    <% end %>
+          <div class="form-group row justify-content-center">
+            <%= submit_tag 'Add Vehicle', class: "btn btn-success" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm">
+    </div>
+  </div>
 </section>

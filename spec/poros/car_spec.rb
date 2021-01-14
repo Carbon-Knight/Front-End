@@ -2,9 +2,10 @@ require 'rails_helper'
 
 describe Car do
   it "Exists and has attributes" do
-    car_info = {make:"subaru",mpg:25,fuelType:"gasoline",model:"forester",year:20010}
+    car_info = {id: 1, make:"subaru",mpg:25,fuelType:"gasoline",model:"forester",year:20010}
     car_poro = Car.new(car_info)
 
+    expect(car_poro.car_id).to eq(car_info[:id])
     expect(car_poro.make).to eq(car_info[:make])
     expect(car_poro.model).to eq(car_info[:model])
     expect(car_poro.year).to eq(car_info[:year])

@@ -11,7 +11,7 @@ describe 'As a user that is logged in' do
 
       stub_omniauth
       visit root_path
-      click_link 'Login with Google'
+      click_link 'Log in with Google'
       click_link 'Log Out'
       expect(current_path).to eq(root_path)
       expect(page).to have_content('You are now logged out!')

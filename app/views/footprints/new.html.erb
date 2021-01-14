@@ -1,21 +1,44 @@
-<h1>Calculate Footprint for the Month</h1>
+<div class="jumbotron text-center">
+  <h5 class="display-4">
+    Calculate Your Car's Footprint for a Month</h5>
+</div>
 
-<%= link_to 'Add a Car', '/cars/new', method: :get %>
-<% unless @cars.nil? || @cars.empty? %>
-  <section class='calculate-footprint'>
-    <%= form_tag '/carbon_calculator', method: :post do %>
-      <%= select_tag(:car, options_for_select(@cars.map {|car| "#{car.year} #{car.make} #{car.model}"}, '1')) %>
-
-      <%= label_tag :total_mileage, 'Total Mileage' %>
-      <%= text_field_tag :total_mileage, params[:total_mileage] %>
-
-      <div class='date-time-select'>
-        <%= date_select(:input, :month, order: [:month]) %>
-        <%= date_select(:input, :year, order: [:year]) %>
+<div class='container-lg text-center'>
+  <% if @cars.empty? %>
+    <section class='no-cars-alert'>
+      <div class="alert alert-dismissible alert-primary">
+        <strong>Oh snap!</strong> You haven't added any cars yet. <a href='/cars/new' class="alert-link">Add a car</a> to calculate your footprint.
       </div>
+    </section> 
+  <% end%>
+</div>
 
-      <%= submit_tag 'Submit' %>
-    <% end %>
+<% unless @cars.empty? %>
+  <section class='calculate-footprint'>
+    <div class="form-group container-lg text-center">
+      <%= form_tag '/carbon_calculator', method: :post do %>
+        <div class='form-select form-select-lg mb-3 p-2'>
+          <%= select_tag(:car_id, options_for_select(@cars.map {|car| ["#{car.year} #{car.make} #{car.model}", car.car_id]}, '1')) %>
+        </div>
+        <div class='form-select form-select-lg mb-3 p-2'>
+          <%= label_tag :total_mileage, 'Total Mileage' %>
+          <%= text_field_tag :total_mileage, params[:total_mileage] %>
+        </div>
+        <div class='form-select form-select-lg mb-3 p-2'>
+          <div class='date-time-select'>
+            <%= select_date(Date.current, order: [:month, :year]) %>
+          </div>
+        </div>
+        <%= submit_tag 'Submit' %>
+      <% end %>
+    </div>
   </section>
-
 <% end %>
+
+<section id='user-carbon-data' class="text-center p-3 pb-5">
+  <div class='container-lg'>
+    <button class="btn btn-success">
+      <a class="btn btn-success" href='/cars/new'>Add a Car</a>
+    </button>
+  </div>
+</section>
