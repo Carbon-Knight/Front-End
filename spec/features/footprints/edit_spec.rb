@@ -29,11 +29,19 @@ describe 'Footprint edit Page' do
 
     it 'I see a form to edit with proper info' do
       visit "/footprints/#{@first_footprint.id}/edit"
-      within ".edit-footprint-form" do
+      within '.edit-footprint-form' do
         expect(page).to have_css('.footprint-month')
         expect(page).to have_content(@first_footprint.month)
         expect(page).to have_css('.footprint-year')
         expect(page).to have_content(@first_footprint.year)
+
+        fill_in :total_mileage, with: 932
+        click_button 'Save'
+        expect(current_path).to eq('/footprints')
+        within ".footprint-#{@first_footprint.id}" do
+          expect(page).to have_content('Total Mileage: 932')
+        end
+        expect(@first_footprint.total_mileage).to eq(932)
       end
     end
   end
@@ -45,7 +53,6 @@ end
 # And click the "Update" button
 # I am taken back to my dashboard
 # And I see a graph with that footprint's updated information
-
 
 # As a user
 # When I click an update link from my footprints index page
