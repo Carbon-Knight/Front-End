@@ -10,6 +10,7 @@ describe 'Welcome Page' do
         status: 200,
         body: File.read('spec/fixtures/get_footprints.json')
       )
+      visit root_path
     end
 
     it 'Welcomes visitor w/ a login' do
