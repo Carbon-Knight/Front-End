@@ -1,4 +1,4 @@
-{"data":{"fetchUserAggregateFootprintForYear":{"footprints":[{"month": "January", "carbon_in_kg": 50}, {"month": "February", "carbon_in_kg": 55.41},
-  {"month": "March", "carbon_in_kg": 26.11 }, {"month": "April", "carbon_in_kg": 10.20 }, {"month": "May", "carbon_in_kg": 18.31 }, {"month": "June", "carbon_in_kg": 45.10 },
-  {"month": "July", "carbon_in_kg": 43.12 }, {"month": "August", "carbon_in_kg": 10.5 }, {"month": "September", "carbon_in_kg": 44.4 }, {"month": "October", "carbon_in_kg": 37.37 },
-  {"month": "November", "carbon_in_kg": 42.11 }, {"month": "December", "carbon_in_kg": 7.0 }]}}}
+{"data":{"fetchUserAggregateFootprintForYear":{"footprints":[{"month": "January", "carbonInKg": 50}, {"month": "February", "carbonInKg": 55.41},
+  {"month": "March", "carbonInKg": 26.11 }, {"month": "April", "carbonInKg": 10.20 }, {"month": "May", "carbonInKg": 18.31 }, {"month": "June", "carbonInKg": 45.10 },
+  {"month": "July", "carbonInKg": 43.12 }, {"month": "August", "carbonInKg": 10.5 }, {"month": "September", "carbonInKg": 44.4 }, {"month": "October", "carbonInKg": 37.37 },
+  {"month": "November", "carbonInKg": 42.11 }, {"month": "December", "carbonInKg": 7.0 }]}}}

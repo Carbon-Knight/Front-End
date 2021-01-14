@@ -18,7 +18,7 @@ class CarService
   end
 
   def self.get_cars(current_user)
-      query = "query {
+    query = "query {
         fetchUserCars(userId: #{current_user.id}) {
           id,
           make,
@@ -28,15 +28,15 @@ class CarService
           fuelType
         }
       }"
-      make_request(query)[:data][:fetchUserCars]
+    make_request(query)[:data][:fetchUserCars]
   end
 
   def self.make_request(query)
     header_hash = {
-      "Content-Type": "application/json"
+      "Content-Type": 'application/json'
     }
 
-    result = Faraday.post(ENV['HOST_URL'], JSON.generate({query: query}), header_hash)
+    result = Faraday.post(ENV['HOST_URL'], JSON.generate({ query: query }), header_hash)
     JSON.parse(result.body, symbolize_names: true)
   end
 end
