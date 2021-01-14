@@ -27,7 +27,6 @@ class FootprintService
           }
         }
       }"
-    require "pry";binding.pry 
     make_request(query)[:data][:fetchUserAggregateFootprintForYear][:footprints]
   end
 
