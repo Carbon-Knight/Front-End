@@ -25,26 +25,22 @@ class FootprintsController < ApplicationController
   end
 
   def update
-    params[:total_mileage]
-    params[:id].to_i
-    require 'pry', binding.pry
-
-    # @footprint = current_user
-    # begin
-    # @footprint.update!(
-    #   name: params[:user][:name],
-    #   address: params[:user][:address],
-    #   city: params[:user][:city],
-    #   state: params[:user][:state],
-    #   zip: params[:user][:zip],
-    #   email: params[:user][:email]
-    # )
-    # flash[:success] = "Profile updated successfully!"
-    # redirect_to '/profile'
-    # rescue ActiveRecord::RecordInvalid => e
-    #   create_error_response(e)
-    #   redirect_to edit_path
+    # footprints = CarMonthlyMileageFacade.get_car_monthly_mileages(current_user)
+    # footprint = footprints.find do |footprint|
+    #   footprint.id == params[:id].to_i
     # end
+
+    # new_mileage = params[:total_mileage]
+    # params[:id].to_i
+
+    # require 'pry', binding.pry
+    if params[:total_mileage] == ''
+      flash.now[:error] = 'You need to fill in the new total mileage'
+      render edit_footprint_path
+    else
+      CarMonthlyMileageFacade.update_footprint(new_footprint_params, current_user)
+      redirect_to footprints_path
+    end
   end
 
   private
