@@ -29,17 +29,18 @@ describe 'New Footprint Estimate Page' do
       CarsFacade.get_cars(@user)
 
       visit '/carbon_calculator'
-      expect(page).to have_select(:car)
+      expect(page).to have_select(:car_id)
       expect(page).to have_field(:total_mileage)
-      expect(page).to have_select('input_month_2i')
-      expect(page).to have_select('input_year_1i')
+      save_and_open_page
+      expect(page).to have_select('date[month]')
+      expect(page).to have_select('date[year]')
 
-      select '2013 Ford Mustang', :from => :car
+      select '2013 Ford Mustang', :from => :car_id
       fill_in :total_mileage, with: 203
 
       within '.date-time-select' do
-        select 'February', from: 'input_month_2i'
-        select '2020', from: 'input_year_1i'
+        select 'February', from: 'date[month]'
+        select '2020', from: 'date[year]'
       end
 
       click_button 'Submit'
@@ -59,6 +60,12 @@ describe 'New Footprint Estimate Page' do
   describe 'As an authenticated user with no cars in the DB' do
     before :each do
       @user = create(:user)
+      url = ENV['HOST_URL']
+
+      stub_request(:post, url).to_return(
+        status: 200,
+        body: File.read('spec/fixtures/get_footprints.json')
+      )
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
     end
@@ -66,6 +73,7 @@ describe 'New Footprint Estimate Page' do
     it 'I can click link on dashboard and I am taken to the form' do
       cars = []
       allow(CarsFacade).to receive(:get_cars).with(@user).and_return(cars)
+
       visit dashboard_path
       click_link 'Input Vehicle Data Here'
       expect(current_path).to eq(carbon_calculator_path)
