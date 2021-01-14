@@ -34,6 +34,8 @@ describe 'Footprint edit Page' do
         expect(page).to have_content(@first_footprint.month)
         expect(page).to have_css('.footprint-year')
         expect(page).to have_content(@first_footprint.year)
+        expect(page).to have_css('.footprint-mileage')
+        expect(page).to have_content(@first_footprint.total_mileage)
 
         fill_in :total_mileage, with: 932
         click_button 'Save'

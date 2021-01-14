@@ -24,6 +24,29 @@ class FootprintsController < ApplicationController
     end
   end
 
+  def update
+    params[:total_mileage]
+    params[:id].to_i
+    require 'pry', binding.pry
+
+    # @footprint = current_user
+    # begin
+    # @footprint.update!(
+    #   name: params[:user][:name],
+    #   address: params[:user][:address],
+    #   city: params[:user][:city],
+    #   state: params[:user][:state],
+    #   zip: params[:user][:zip],
+    #   email: params[:user][:email]
+    # )
+    # flash[:success] = "Profile updated successfully!"
+    # redirect_to '/profile'
+    # rescue ActiveRecord::RecordInvalid => e
+    #   create_error_response(e)
+    #   redirect_to edit_path
+    # end
+  end
+
   private
 
   def new_footprint_params

@@ -8,11 +8,11 @@ Rails.application.routes.draw do
 
   get '/log_out', to: 'sessions#destroy'
 
-  resources :cars, only: [:new, :create]
+  resources :cars, only: %i[new create]
 
   get '/carbon_calculator', to: 'footprints#new'
   post '/carbon_calculator', to: 'footprints#create'
 
-  resources :footprints, only: [:index, :edit]
+  resources :footprints, only: %i[index edit update]
   resources :resources, only: [:index]
 end
