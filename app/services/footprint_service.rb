@@ -18,18 +18,16 @@ class FootprintService
   def self.get_footprints(year, current_user)
     query = "query
     {
-      fetchUserFootprint(input: {
-        user_id: #{current_user.id},
-        year: #{year}
-      ) {
+      fetchUserAggregateFootprintForYear( userId: #{current_user.id}, year: #{year})
+        {
           footprints 
           { 
             month 
             carbonInKg
           }
         }
-      }
-    }"
+      }"
+    require "pry";binding.pry 
     make_request(query)[:data][:fetchUserAggregateFootprintForYear][:footprints]
   end
 
