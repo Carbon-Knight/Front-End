@@ -31,7 +31,6 @@ describe 'New Footprint Estimate Page' do
       visit '/carbon_calculator'
       expect(page).to have_select(:car_id)
       expect(page).to have_field(:total_mileage)
-      save_and_open_page
       expect(page).to have_select('date[month]')
       expect(page).to have_select('date[year]')
 

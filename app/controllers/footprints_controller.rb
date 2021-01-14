@@ -17,6 +17,6 @@ class FootprintsController < ApplicationController
   private
 
   def new_footprint_params
-    params.permit(:car_id, :total_mileage, :month, :year)
+    params.permit(:car_id, :total_mileage, :date => [:month, :year])
   end
 end

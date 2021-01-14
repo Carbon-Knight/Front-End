@@ -40,8 +40,9 @@ RSpec.describe FootprintService do
       car_info = {make:"subaru",mpg:25,fuelType:"gasoline",model:"forester",year:2010}
       car = Car.new(car_info)
 
-      footprint_info = {car_id: car, total_mileage: 204, month: 'February', year: '2020'}
+      footprint_info = {car_id: car, total_mileage: 204, date: {month: '2', year: '2020'}}
       response = FootprintService.new_footprint(footprint_info, current_user)
+
       expect(response).to be_a(Hash)
       expect(response[:data]).to be_a(Hash)
       expect(response[:data][:createFootprintAndCarMonthlyMileage]).to be_a(Hash)

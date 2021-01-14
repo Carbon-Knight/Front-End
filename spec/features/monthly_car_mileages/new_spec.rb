@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 describe 'Carbon Footprint Calculation for Car Monthly Mileages Page' do
+  before :each do 
+    url = ENV['HOST_URL']
+    stub_request(:post, url).to_return(
+      status: 200,
+      body: File.read('spec/fixtures/get_footprints.json')
+    )
+  end
   describe 'As a visitor' do
     it 'I am unable to visit the dashboard' do
       visit dashboard_path
@@ -12,21 +19,18 @@ describe 'Carbon Footprint Calculation for Car Monthly Mileages Page' do
   describe 'As an authenticated user with no cars in the DB' do
     before :each do
       @user = create(:user)
-
+      cars = []
+      allow(CarsFacade).to receive(:get_cars).with(@user).and_return(cars)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
     end
 
     it 'I can click link on dashboard and I am taken to the form' do
-      cars = []
-      allow(CarsFacade).to receive(:get_cars).with(@user).and_return(cars)
       visit dashboard_path
       click_link 'Input Vehicle Data Here'
       expect(current_path).to eq(carbon_calculator_path)
     end
 
     it 'I see a link to add a new car' do
-      cars = []
-      allow(CarsFacade).to receive(:get_cars).with(@user).and_return(cars)
       visit carbon_calculator_path
 
       expect(page).to have_link('Add a Car')
