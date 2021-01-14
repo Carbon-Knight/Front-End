@@ -27,7 +27,7 @@ RSpec.describe FootprintService do
   end
   describe 'Create new footprint' do
     let(:url) { ENV['HOST_URL']}
-    
+
     before do
       stub_request(:post, url).to_return(
         status: 200,
@@ -52,9 +52,9 @@ RSpec.describe FootprintService do
     end
   end
 
-  describe 'Get User Footprint Years' do 
+  describe 'Get User Footprint Years' do
     let(:url) { ENV['HOST_URL']}
-    
+
     before do
       stub_request(:post, url).to_return(
         status: 200,
@@ -62,7 +62,7 @@ RSpec.describe FootprintService do
       )
     end
 
-    it 'returns an array of years as integers' do 
+    it 'returns an array of years as integers' do
       current_user = create(:user)
 
       response = FootprintService.get_user_footprint_years(current_user)
@@ -73,6 +73,5 @@ RSpec.describe FootprintService do
         expect(r).to be_a(Integer)
       end
     end
-
   end
 end

@@ -2,10 +2,10 @@ class FootprintService
   def self.new_footprint(footprint_params, current_user)
     query = "mutation {
         createFootprintAndCarMonthlyMileage(input: {
-          carId: #{footprint_params[:car_id]},
+          carId: \"#{footprint_params[:car_id]}\",
           totalMileage: #{footprint_params[:total_mileage]},
-          month: \"#{Date::MONTHNAMES[footprint_params[:date][:month].to_i]}\",
-          year: #{footprint_params[:date][:year]}
+          month: \"#{footprint_params[:month]}\",
+          year: \"#{footprint_params[:year]}\"
         }) {
             footprint {
               id
@@ -16,10 +16,10 @@ class FootprintService
   end
 
   def self.get_footprints(year, current_user)
-    query = "query {
-      fetchUserAggregateFootprintForYear
-      (
-        userId: #{current_user.id},
+    query = "query
+    {
+      fetchUserFootprint(input: {
+        user_id: #{current_user.id},
         year: #{year}
       ) {
           footprints 
@@ -28,12 +28,13 @@ class FootprintService
             carbonInKg
           }
         }
-      }"
+      }
+    }"
     make_request(query)[:data][:fetchUserAggregateFootprintForYear][:footprints]
   end
 
   def self.get_user_footprint_years(current_user)
-    query = "query 
+    query = "query
     {
       fetchUserFootprintYears(userId: #{current_user.id}) 
       { 
@@ -49,6 +50,7 @@ class FootprintService
     }
 
     result = Faraday.post(ENV['HOST_URL'], JSON.generate({ query: query }), header_hash)
+
     JSON.parse(result.body, symbolize_names: true)
   end
 end

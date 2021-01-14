@@ -14,4 +14,11 @@ class FootprintFacade
   def self.get_user_footprint_years(current_user)
     FootprintService.get_user_footprint_years(current_user)
   end
+
+  def self.get_total_carbon_for_year(year, current_user)
+    footprints = get_footprints(year, current_user)
+    footprints.sum do |_, carbon_in_kg|
+      carbon_in_kg
+    end
+  end
 end

@@ -6,6 +6,9 @@
   </div>
   <div>
     <h3 class="text-center"> Your Carbon Footprint For <%= @year %> Is: </h3>
+    <div class="total-carbon-year">
+      <p>Total(<%= @year %>): <%= @total_carbon_for_year %> </p>
+    </div>
 </section>
 
 <section id="charts">
@@ -17,18 +20,14 @@
     <%= area_chart(@footprints, xtitle: 'Carbon(kg)', messages: {empty: 'No Data' }) %>
   </div>
 
-  <div id="top-five-right">
-    -- Top 5 on the right
-  </div>
-
-  <div class='select-year-dropdown'>
-    <% if @footprint_years %>
-      <%= form_tag dashboard_path, method: :get do %>
-        <%= select_tag(:footprint_year, options_for_select(@footprint_years, '1')) %>
-        <%= submit_tag 'Select Footprint Year' %>
-      <% end %>
-    <% end %>
-  </div>
+  <!-- <div class='select-year-dropdown'>
+    <%# <% if @footprint_years %> %>
+      <%# <%= form_tag dashboard_path, method: :get do %> %>
+        <%# <%= select_tag(:footprint_year, options_for_select(@footprint_years, '1')) %> %>
+        <%# <%= submit_tag 'Select Footprint Year' %> %>
+      <%# <% end %> %>
+    <%# <% end %> %>
+  </div> -->
 </section>
 
 <section id='user-carbon-data' class="text-center p-5">
