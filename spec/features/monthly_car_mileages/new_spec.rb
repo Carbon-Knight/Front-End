@@ -22,6 +22,7 @@ describe 'Carbon Footprint Calculation for Car Monthly Mileages Page' do
       cars = []
       allow(CarsFacade).to receive(:get_cars).with(@user).and_return(cars)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+      allow(FootprintFacade).to receive(:get_user_footprint_years).with(@user).and_return([2018, 2019, 2020, 2021])
     end
 
     it 'I can click link on dashboard and I am taken to the form' do

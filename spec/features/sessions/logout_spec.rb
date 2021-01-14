@@ -8,7 +8,9 @@ describe 'As a user that is logged in' do
         status: 200,
         body: File.read('spec/fixtures/get_footprints.json')
       )
-
+      @user = create(:user)
+      allow_any_instance_of(DashboardController).to receive(:show).and_return([2010])
+      
       stub_omniauth
       visit root_path
       click_link 'Log in with Google'
