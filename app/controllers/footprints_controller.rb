@@ -25,8 +25,8 @@ class FootprintsController < ApplicationController
     car_monthly_mileage = find_car_monthly_mileage(params[:id].to_i, current_user)
 
     if params[:total_mileage] == ''
-      flash.now[:error] = 'You need to fill in the new total mileage'
-      render edit_footprint_path
+      flash[:error] = 'You need to fill in the new total mileage'
+      redirect_to edit_footprint_path
     else
       CarMonthlyMileageFacade.update_car_monthly_mileage(car_monthly_mileage, new_footprint_params)
       redirect_to footprints_path
