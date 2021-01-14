@@ -20,14 +20,14 @@
     <%= area_chart(@footprints, xtitle: 'Carbon(kg)', messages: {empty: 'No Data' }) %>
   </div>
 
-  <!-- <div class='select-year-dropdown'>
-    <%# <% if @footprint_years %> %>
-      <%# <%= form_tag dashboard_path, method: :get do %> %>
-        <%# <%= select_tag(:footprint_year, options_for_select(@footprint_years, '1')) %> %>
-        <%# <%= submit_tag 'Select Footprint Year' %> %>
-      <%# <% end %> %>
-    <%# <% end %> %>
-  </div> -->
+ <div class='select-year-dropdown'>
+   <% if @footprint_years %>
+    <%= form_tag dashboard_path, method: :get do %>
+      <%= select_tag(:footprint_year, options_for_select(@footprint_years, '1')) %>
+      <%= submit_tag 'Select Footprint Year' %>
+    <% end %>
+   <% end %>
+  </div>
 </section>
 
 <section id='user-carbon-data' class="text-center p-5">

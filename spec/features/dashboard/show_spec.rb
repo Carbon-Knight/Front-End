@@ -77,14 +77,14 @@ describe 'User Dashboard' do
         end
       end
 
-      xit 'If a user has data saved, a drop down to view a selected year is visable' do
+      it 'If a user has data saved, a drop down to view a selected year is visable' do
         year = Time.now.year
         expect(page).to have_content("Your Carbon Footprint For #{year} Is:")
         expect(page).to have_css('.select-year-dropdown')
         expect(page).to have_select(:footprint_year, :options => ['2018', '2019', '2020', '2021'])
       end
 
-      xit 'when a user selects a year, they are redirected to the dashboard and see the graph for that year' do
+      it 'when a user selects a year, they are redirected to the dashboard and see the graph for that year' do
         expect(page).to have_content("Your Carbon Footprint For #{@year} Is:")
         #TODO add test for specific results before change graph
 
