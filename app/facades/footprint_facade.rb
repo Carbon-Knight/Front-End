@@ -14,4 +14,8 @@ class FootprintFacade
   def self.get_user_footprint_years(current_user)
     FootprintService.get_user_footprint_years(current_user)
   end
+
+  def self.get_total_carbon_for_year(year, current_user)
+    # require "pry"; binding.pry
+  end
 end
