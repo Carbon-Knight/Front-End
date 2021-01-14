@@ -11,6 +11,23 @@ class CarMonthlyMileageService
     make_request(query)[:data][:fetchAllUserCarMonthlyMileages]
   end
 
+  def self.update_car_monthly_mileage(car_monthly_mileage, footprint_params)
+    query = "mutation {
+      updateCarMonthlyMileage(input:{
+        id: #{car_monthly_mileage.id},
+        totalMileage: #{footprint_params[:total_mileage].to_i},
+        month: #{car_monthly_mileage.month},
+        year: #{car_monthly_mileage.year}
+        }) {
+          footprint {
+            carbonInKg
+            offsetCostTotal
+            offsetCostCurrency
+          }
+        }
+      }"
+  end
+
   def self.make_request(query)
     header_hash = {
       "Content-Type": 'application/json'
