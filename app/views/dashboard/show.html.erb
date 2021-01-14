@@ -19,7 +19,7 @@
   <div id="graph">
     <%= area_chart(@footprints, xtitle: 'Carbon(kg)', messages: {empty: 'No Data' }) %>
   </div>
-
+  
  <div class='select-year-dropdown'>
    <% if @footprint_years %>
     <%= form_tag dashboard_path, method: :get do %>
