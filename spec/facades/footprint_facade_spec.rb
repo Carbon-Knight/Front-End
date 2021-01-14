@@ -26,14 +26,26 @@ RSpec.describe FootprintFacade do
     year = '2021'
     current_user = create(:user)
     file = File.read('spec/fixtures/get_footprints.json')
-    footprints = JSON.parse(file, symbolize_names: true)[:data][:fetchUserFootprints][:footprints]
+    footprints = JSON.parse(file, symbolize_names: true)[:data][:fetchUserAggregateFootprintForYear][:footprints]
 
     allow(FootprintService).to receive(:get_footprints).with(year, current_user).and_return(footprints)
 
-    result = FootprintFacade.get_footprints(year, current_user)
-    first = result[0]
+    results = FootprintFacade.get_footprints(year, current_user)
+
+    expect(results).to be_a(Array)
+    results.each do |result|
+      expect(result[0]).to be_a(String)
+      expect(result[1]).to be_a(Numeric)
+    end
+  end
+
+  it 'returns an array of years' do 
+    current_user = create(:user)
+    years = [2010, 2011, 2012]
+    allow(FootprintService).to receive(:get_user_footprint_years).with(current_user).and_return(years)
+    result = FootprintFacade.get_user_footprint_years(current_user)
 
     expect(result).to be_a(Array)
-    expect(first).to be_a(Footprint)
+    expect(result[0]).to be_a(Integer)
   end
 end

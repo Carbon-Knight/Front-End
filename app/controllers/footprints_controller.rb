@@ -6,8 +6,8 @@ class FootprintsController < ApplicationController
   def create
     # TODO: add error messages and render :new
     FootprintFacade.new_footprint(new_footprint_params, current_user)
-    #Manually reset cache for year 
-    #Rails.cache.delete("params[:year]/footprints")
+    Rails.cache.delete("footprint_years/#{current_user.id}/#{Time.now.year}")
+    Rails.cache.delete("footprints/#{current_user.id}/#{params[:date][:year]}")
     
     redirect_to '/dashboard'
   end
@@ -15,6 +15,6 @@ class FootprintsController < ApplicationController
   private
 
   def new_footprint_params
-    params.permit(:car_id, :total_mileage, :month, :year)
+    params.permit(:car_id, :total_mileage, :date => [:month, :year])
   end
 end

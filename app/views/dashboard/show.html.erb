@@ -5,8 +5,7 @@
       Hello <%= current_user.name %>!</h1>
   </div>
   <div>
-    <h3 class="text-center"> Your Carbon Footprint Is: </h3>
-  </div>
+    <h3 class="text-center"> Your Carbon Footprint For <%= @year %> Is: </h3>
 </section>
 
 <section id="charts">
@@ -15,13 +14,20 @@
   </div>
 
   <div id="graph">
-    <%# <%= column_chart @footprints.group_by_month(:month, format: "%b", messages: {empty: 'You have no footprint data'}) %> %>
-    <p>You have no footprint data</p>
-    -- Graph in the middle --
+    <%= area_chart(@footprints, xtitle: 'Carbon(kg)', messages: {empty: 'No Data' }) %>
   </div>
 
   <div id="top-five-right">
     -- Top 5 on the right
+  </div>
+
+  <div class='select-year-dropdown'>
+    <% if @footprint_years %>
+      <%= form_tag dashboard_path, method: :get do %>
+        <%= select_tag(:footprint_year, options_for_select(@footprint_years, '1')) %>
+        <%= submit_tag 'Select Footprint Year' %>
+      <% end %>
+    <% end %>
   </div>
 </section>
 

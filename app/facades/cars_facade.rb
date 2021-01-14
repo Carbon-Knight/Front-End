@@ -6,9 +6,11 @@ class CarsFacade
 
   def self.get_cars(current_user)
     cars = CarService.get_cars(current_user)
-    cars.map do |car|
-      Car.new(car)
+    unless cars.nil?
+      # TODO: Create error message for when this happens
+      cars.map do |car|
+        Car.new(car)
+      end
     end
   end
-
 end

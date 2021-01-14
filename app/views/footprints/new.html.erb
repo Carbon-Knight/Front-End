@@ -4,7 +4,7 @@
 </div>
 
 <div class='container-lg text-center'>
-  <% if @cars.empty? %>
+  <% if @cars.nil? || @cars.empty? %>
     <section class='no-cars-alert'>
       <div class="alert alert-dismissible alert-primary">
         <strong>Oh snap!</strong> You haven't added any cars yet. <a href='/cars/new' class="alert-link">Add a car</a> to calculate your footprint.
@@ -13,12 +13,12 @@
   <% end%>
 </div>
 
-<% unless @cars.empty? %>
+<% unless @cars.nil? || @cars.empty? %>
   <section class='calculate-footprint'>
     <div class="form-group container-lg text-center">
       <%= form_tag '/carbon_calculator', method: :post do %>
         <div class='form-select form-select-lg mb-3 p-2'>
-          <%= select_tag(:car, options_for_select(@cars.map {|car| ["#{car.year} #{car.make} #{car.model}", car.car_id]}, '1')) %>
+          <%= select_tag(:car_id, options_for_select(@cars.map {|car| ["#{car.year} #{car.make} #{car.model}", car.car_id]}, '1')) %>
         </div>
         <div class='form-select form-select-lg mb-3 p-2'>
           <%= label_tag :total_mileage, 'Total Mileage' %>
@@ -26,10 +26,7 @@
         </div>
         <div class='form-select form-select-lg mb-3 p-2'>
           <div class='date-time-select'>
-            <%# select_date(Date.current, order: [:month, :year]) might be easier to work with? %>
-            <%# leaving this as is for now %>
-            <%= date_select(:input, :month, order: [:month]) %>
-            <%= date_select(:input, :year, order: [:year]) %>
+            <%= select_date(Date.current, order: [:month, :year]) %>
           </div>
         </div>
         <%= submit_tag 'Submit' %>
