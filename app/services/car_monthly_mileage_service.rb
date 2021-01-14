@@ -15,9 +15,7 @@ class CarMonthlyMileageService
     query = "mutation {
       updateCarMonthlyMileage(input:{
         id: #{car_monthly_mileage.id},
-        totalMileage: #{footprint_params[:total_mileage].to_i},
-        month: #{car_monthly_mileage.month},
-        year: #{car_monthly_mileage.year}
+        totalMileage: #{footprint_params[:total_mileage].to_i}
         }) {
           footprint {
             carbonInKg
