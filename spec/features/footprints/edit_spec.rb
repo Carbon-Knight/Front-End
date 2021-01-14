@@ -15,7 +15,6 @@ describe 'Footprint edit Page' do
       allow(CarMonthlyMileageService).to receive(:get_car_monthly_mileages).with(@user).and_return(car_monthly_mileages)
       @result = CarMonthlyMileageFacade.get_car_monthly_mileages(@user)
       @first_footprint = @result.first
-      # {"id":1,"month":"June","year":2020,"totalMileage":12345}
     end
 
     it 'Clicking edit link will redirect me to an edit page' do
@@ -38,8 +37,15 @@ describe 'Footprint edit Page' do
         expect(page).to have_content(@first_footprint.total_mileage)
 
         fill_in :total_mileage, with: 932
+
+        stub_request(:post, url).to_return(
+          status: 200,
+          body: File.read('spec/fixtures/updated_car_monthly_mileages.json')
+        )
         click_button 'Save'
+
         expect(current_path).to eq('/footprints')
+        
         within ".footprint-#{@first_footprint.id}" do
           expect(page).to have_content('Total Mileage: 932')
         end
