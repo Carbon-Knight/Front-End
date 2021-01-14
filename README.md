@@ -37,7 +37,7 @@
   * [Welcome](#welcome)
   * [Login and Logout](#login-and-logout)
   * [User Dashboard](#user-dashboard)
-  * [Carbon Footprint](#carbon-footprint)
+  * [Calculating Carbon Footprint](#calculating-carbon-footprint)
   * [Adding a New User Car](#adding-a-new-user-car)
   * [Resources](#resources)
   * [Next Time](#next-time)
@@ -89,17 +89,29 @@ This is the main landing page for a visitor.  Here a visitor is able to see a br
 
 After logging in a user is taked to their dashboard.  Here they are able to see a graphical representation of all their carbon footprints.  There is also links to take them to input a new footprint or edit old footprints.
 
-### Carbon Footprint
+### Calculating Carbon Footprint
+
+1. Click on 'Carbon Calculator' in the navigation drop down  
+<img src='app/assets/images/adding_a_new_user_car/click_carbon_calculator.png' width='100'>  
+
+1. Select your saved car from the drop down, enter the total monthly mileage you drove in your car, and select the month and year for the calculation. Click 'Submit'
+<img src='app/assets/images/calculate_footprint/add_car_mileage.png' width='300'>
+
+1. You will be redirected to your user dashboard with an update visual of your carbon footprint estimate in kilograms of carbon.  
+<img src='app/assets/images/calculate_footprint/updated_footprint.png' width='400'>
 
 ### Adding a New User Car 
-1. Click on Carbon Calculator in the Navigation Bar
-![Navigate to the Carbon Calculator](app/assets/images/dashboard/click_carbon_footprint_calculator.png)
-    - Image left for future reference when adding actual images (after styling is done)
-1. Click 'Add a Car' link to navigate to the new car form 
-1. Complete the required fields for a new car (Make, Model, Year, Fuel efficiency), Fuel type 
-1. Click 'Add Vehicle' once all fields have been completed (an error message will display otherwise)
-   - You will be redirected back to the carbon footprint calculator 
-1. Added car will be visible within the car selection drop down 
+1. Click on 'Carbon Calculator' in the navigation drop down  
+<img src='app/assets/images/adding_a_new_user_car/click_carbon_calculator.png' width='100'>
+
+1. Click 'Add a Car' button to navigate to the new car form  
+<img src='app/assets/images/adding_a_new_user_car/add_a_car.png' width='300'>
+1. Complete the required fields for a new car (Make, Model, Year, Fuel efficiency, Fuel type)
+1. Click 'Add Vehicle' once all fields have been completed (an error message will display otherwise)  
+<img src='app/assets/images/adding_a_new_user_car/click_add_vehicle.png' width='250'>
+
+1. You will be redirected to the carbon calculator page and the added car will be visible within the car selection drop down  
+<img src='app/assets/images/adding_a_new_user_car/added_car.png' width='250'>  
 
 ### Resources
 
