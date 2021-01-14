@@ -12,7 +12,22 @@ describe 'Footprint Index Page' do
       file = File.read('spec/fixtures/get_car_monthly_mileages.json')
       car_monthly_mileages = JSON.parse(file, symbolize_names: true)[:data][:fetchAllUserCarMonthlyMileages]
 
+      footprints = [{ month: 'January', carbonInKg: 45.21 },
+                    { month: 'February', carbonInKg: 50.41 },
+                    { month: 'March', carbonInKg: nil },
+                    { month: 'April', carbonInKg: nil },
+                    { month: 'May', carbonInKg: nil },
+                    { month: 'June', carbonInKg: nil },
+                    { month: 'July', carbonInKg: nil },
+                    { month: 'August', carbonInKg: nil },
+                    { month: 'September', carbonInKg: nil },
+                    { month: 'October', carbonInKg: nil },
+                    { month: 'November', carbonInKg: nil },
+                    { month: 'December', carbonInKg: nil }]
+
       allow(CarMonthlyMileageService).to receive(:get_car_monthly_mileages).with(@user).and_return(car_monthly_mileages)
+      allow(FootprintService).to receive(:get_footprints).with(2021, @user).and_return(footprints)
+      allow(FootprintService).to receive(:get_user_footprint_years).with(@user).and_return([2020])
       @result = CarMonthlyMileageFacade.get_car_monthly_mileages(@user)
     end
 

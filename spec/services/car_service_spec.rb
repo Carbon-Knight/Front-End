@@ -9,6 +9,7 @@ describe CarService do
         body: File.read('spec/fixtures/get_cars.json')
       )
     end
+
     it 'returns parsed JSON data for a user\'s new car' do
       current_user = create(:user)
 
@@ -16,6 +17,7 @@ describe CarService do
       expect(response).to be_a(Array)
       first = response[0]
 
+      expect(first[:id]).to be_a(Integer)
       expect(first[:userId]).to be_a(Integer)
       expect(first[:make]).to be_a(String)
       expect(first[:model]).to be_a(String)
@@ -32,6 +34,7 @@ describe CarService do
       first = response[0]
       second = response[1]
 
+      expect(first[:id]).to be_a(Integer)
       expect(first[:userId]).to be_a(Integer)
       expect(first[:make]).to be_a(String)
       expect(first[:model]).to be_a(String)
@@ -40,6 +43,7 @@ describe CarService do
       expect(first[:fuelType]).to be_a(String)
 
 
+      expect(second[:id]).to be_a(Integer)
       expect(second[:userId]).to be_a(Integer)
       expect(second[:make]).to be_a(String)
       expect(second[:model]).to be_a(String)
@@ -48,6 +52,7 @@ describe CarService do
       expect(second[:fuelType]).to be_a(String)
     end
   end
+
   describe 'Create new user car' do
     before do
       stub_request(:post, url).to_return(
