@@ -6,9 +6,7 @@ class CarMonthlyMileageFacade
     end
   end
 
-  def self.update_footprint(footprint_params, current_user)
-    # need to pass in the footprint id
-    # or the car id?
-    require 'pry', binding.pry
+  def self.update_car_monthly_mileage(car_monthly_mileage_id, footprint_params, current_user)
+    CarMonthlyMileageService.update_car_monthly_mileage(car_monthly_mileage_id, footprint_params, current_user)
   end
 end
