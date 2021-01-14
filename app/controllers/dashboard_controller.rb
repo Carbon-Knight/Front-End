@@ -13,7 +13,7 @@ class DashboardController < ApplicationController
       FootprintFacade.get_footprints(@year, current_user)
     end
     
-    @total_carbon_for_year = FootprintFacade.get_total_carbon_for_year(@year, current_user)
+    @total_carbon_for_year = FootprintFacade.get_total_carbon_for_year(@footprints)
   end
 
   def select_year

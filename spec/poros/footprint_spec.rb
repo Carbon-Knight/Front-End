@@ -19,4 +19,15 @@ describe Footprint do
 
     expect(footprint_poro.carbon_in_kg).to eq(0)
   end
+
+  it 'can calculate the total carbon for footprints' do 
+    footprints = [["January", 10], ["February", 10],["March", 10],
+    ["April", 10],["May", 10],["June", 10],["July", 10],
+    ["August", 10],["September", 10],["October", 10],["November", 10],
+    ["December", 10]]
+
+    result = Footprint.total_carbon_for_year(footprints)
+
+    expect(result).to eq(120)
+  end
 end
