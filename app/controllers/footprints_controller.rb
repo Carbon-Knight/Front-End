@@ -18,27 +18,17 @@ class FootprintsController < ApplicationController
 
   def edit
     footprint_id = params[:id].to_i
-    footprints = CarMonthlyMileageFacade.get_car_monthly_mileages(current_user)
-    @footprint = footprints.find do |footprint|
-      footprint.id == footprint_id
-    end
+    @footprint = find_car_monthly_mileage(footprint_id, current_user)
   end
 
   def update
-    # footprints = CarMonthlyMileageFacade.get_car_monthly_mileages(current_user)
-    # footprint = footprints.find do |footprint|
-    #   footprint.id == params[:id].to_i
-    # end
+    car_monthly_mileage_id = params[:id].to_i
 
-    # new_mileage = params[:total_mileage]
-    # params[:id].to_i
-
-    # require 'pry', binding.pry
     if params[:total_mileage] == ''
       flash.now[:error] = 'You need to fill in the new total mileage'
       render edit_footprint_path
     else
-      CarMonthlyMileageFacade.update_footprint(new_footprint_params, current_user)
+      CarMonthlyMileageFacade.update_car_monthly_mileage(car_monthly_mileage_id, new_footprint_params, current_user)
       redirect_to footprints_path
     end
   end
@@ -47,5 +37,12 @@ class FootprintsController < ApplicationController
 
   def new_footprint_params
     params.permit(:car_id, :total_mileage, :month, :year)
+  end
+
+  def find_car_monthly_mileage(id, current_user)
+    car_monthly_mileages = CarMonthlyMileageFacade.get_car_monthly_mileages(current_user)
+    car_monthly_mileages.find do |car_monthly_mileage|
+      car_monthly_mileage.id == id
+    end
   end
 end
