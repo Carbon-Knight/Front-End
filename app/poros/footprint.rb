@@ -12,6 +12,6 @@ class Footprint
   def self.total_carbon_for_year(footprints)
     footprints.sum do |footprint|
       footprint[1]
-    end
+    end.round(2)
   end
 end
