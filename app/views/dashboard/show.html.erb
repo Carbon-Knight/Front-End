@@ -19,7 +19,7 @@
   </div>
 
   <div id="graph">
-    <%= area_chart(@footprints, xtitle: 'Carbon(kg)', messages: {empty: 'No Data' }) %>
+    <%= area_chart(@footprints, ytitle: 'Carbon(kg)', messages: {empty: 'No Data' }) %>
   </div>
   
  <div class='select-year-dropdown'>
@@ -38,7 +38,7 @@
   <div class='container-lg'>
     <button class="btn btn-group">
       <button class="btn btn-success">
-        <a class="btn btn-success" href='/carbon_calculator'>Input Vehicle Data Here</a>
+        <a class="btn btn-success" href='/carbon_calculator'>Carbon Calculator</a>
       </button>
       <button class="btn btn-success">
         <a class="btn btn-success" href='/footprints'>View Previous Footprints</a>
