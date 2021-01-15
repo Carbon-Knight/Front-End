@@ -18,9 +18,11 @@ describe 'New Footprint Estimate Page' do
 
     it 'I see a link to add a new footprint estimate and am taken to the form' do
       visit '/dashboard'
-      expect(page).to have_link('Input Vehicle Data Here')
+      expect(page).to have_link('Carbon Calculator')
 
-      click_link('Input Vehicle Data Here')
+      within('#user-carbon-data') do
+        click_link('Carbon Calculator')
+      end
       expect(current_path).to eq('/carbon_calculator')
     end
 
@@ -76,7 +78,9 @@ describe 'New Footprint Estimate Page' do
       allow(CarsFacade).to receive(:get_cars).with(@user).and_return(cars)
 
       visit dashboard_path
-      click_link 'Input Vehicle Data Here'
+      within('#user-carbon-data') do
+        click_link 'Carbon Calculator'
+      end
       expect(current_path).to eq(carbon_calculator_path)
     end
 

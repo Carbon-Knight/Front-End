@@ -13,32 +13,43 @@
   <% end%>
 </div>
 
-<% unless @cars.nil? || @cars.empty? %>
-  <section class='calculate-footprint'>
-    <div class="form-group container-lg text-center">
-      <%= form_tag '/carbon_calculator', method: :post do %>
-        <div class='form-select form-select-lg mb-3 p-2'>
-          <%= select_tag(:car_id, options_for_select(@cars.map {|car| ["#{car.year} #{car.make} #{car.model}", car.car_id]}, '1')) %>
-        </div>
-        <div class='form-select form-select-lg mb-3 p-2'>
-          <%= label_tag :total_mileage, 'Total Mileage' %>
-          <%= text_field_tag :total_mileage, params[:total_mileage] %>
-        </div>
-        <div class='form-select form-select-lg mb-3 p-2'>
-          <div class='date-time-select'>
-            <%= select_date(Date.current, order: [:month, :year]) %>
-          </div>
-        </div>
-        <%= submit_tag 'Submit' %>
-      <% end %>
-    </div>
-  </section>
-<% end %>
 
 <section id='user-carbon-data' class="text-center p-3 pb-5">
   <div class='container-lg'>
-    <button class="btn btn-success">
-      <a class="btn btn-success" href='/cars/new'>Add a Car</a>
+    <button class="btn btn-secondary btn-sm">
+      <a class="btn btn-secondary" href='/cars/new'>Add a Car</a>
     </button>
   </div>
 </section>
+ 
+<% unless @cars.nil? || @cars.empty? %>
+  <section class='calculate-footprint'>
+    <div class="row">
+      <div class="col-sm">
+      </div>
+      <div class="col-sm">
+        <div class="form-group container-lg text-center">
+          <%= form_tag '/carbon_calculator', method: :post do %>
+            <div class='form-select form-select-lg mb-3 p-2'>
+              <%= select_tag(:car_id, options_for_select(@cars.map {|car| ["#{car.year} #{car.make} #{car.model}", car.car_id]}, '1'), class: "form-control" ) %>
+            </div>
+            <div class='form-select form-select-lg mb-3 p-2 form-group'>
+              <%= label_tag :total_mileage, 'Total Mileage', class: "col-form-label" %>
+              <%= text_field_tag :total_mileage, params[:total_mileage], placeholder: 'miles driven in a month', class: "form-control" %>
+            </div>
+            <div class='form-select form-select-lg mb-3 p-2'>
+              <div class='date-time-select'>
+                <%= select_date(Date.current, order: [:month, :year]) %>
+              </div>
+            </div>
+            <%= submit_tag 'Submit', class: "btn btn-success btn-lg" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-sm">
+      </div>
+    </div>
+    <%# row div ends here %>
+  </section>
+<% end %>
+

@@ -54,7 +54,7 @@ describe 'User Dashboard' do
 
       it 'has links for the leader board, carbon calculator' do
         within '#user-carbon-data' do
-          expect(page).to have_link('Input Vehicle Data Here')
+          expect(page).to have_link('Carbon Calculator')
           expect(page).to have_link('View Previous Footprints')
         end
       end
@@ -101,7 +101,7 @@ describe 'User Dashboard' do
         #TODO add the resulting data for the new graph
       end
       it 'I see my total carbon for the year' do
-        year = 2021
+        #year = 2021
         expect(page).to have_css('.total-carbon-year')
         within('.total-carbon-year') do
           expect(page).to have_content("Total: 95.62")
