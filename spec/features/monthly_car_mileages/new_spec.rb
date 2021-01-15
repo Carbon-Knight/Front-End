@@ -27,7 +27,9 @@ describe 'Carbon Footprint Calculation for Car Monthly Mileages Page' do
 
     it 'I can click link on dashboard and I am taken to the form' do
       visit dashboard_path
-      click_link 'Input Vehicle Data Here'
+      within('.nav') do
+        click_link 'Carbon Calculator'
+      end
       expect(current_path).to eq(carbon_calculator_path)
     end
 

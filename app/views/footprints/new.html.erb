@@ -14,6 +14,14 @@
 </div>
 
 
+<section id='user-carbon-data' class="text-center p-3 pb-5">
+  <div class='container-lg'>
+    <button class="btn btn-secondary btn-sm">
+      <a class="btn btn-secondary" href='/cars/new'>Add a Car</a>
+    </button>
+  </div>
+</section>
+ 
 <% unless @cars.nil? || @cars.empty? %>
   <section class='calculate-footprint'>
     <div class="row">
@@ -25,13 +33,6 @@
             <div class='form-select form-select-lg mb-3 p-2'>
               <%= select_tag(:car_id, options_for_select(@cars.map {|car| ["#{car.year} #{car.make} #{car.model}", car.car_id]}, '1'), class: "form-control" ) %>
             </div>
-            <section id='user-carbon-data' class="text-center p-3 pb-5">
-              <div class='container-lg'>
-                <button class="btn btn-secondary btn-sm">
-                  <a class="btn btn-secondary" href='/cars/new'>Add a Car</a>
-                </button>
-              </div>
-            </section>
             <div class='form-select form-select-lg mb-3 p-2 form-group'>
               <%= label_tag :total_mileage, 'Total Mileage', class: "col-form-label" %>
               <%= text_field_tag :total_mileage, params[:total_mileage], placeholder: 'miles driven in a month', class: "form-control" %>
