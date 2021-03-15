@@ -12,4 +12,14 @@ describe CarMonthlyMileageFacade do
     expect(result).to be_a(Array)
     expect(first).to be_a(CarMonthlyMileage)
   end
+
+  # TODO: make this test more robust. Use vcr and call actual BE on heroku maybe?
+  it 'Returns a single car monthly mileage' do
+    file = File.read('spec/fixtures/get_single_car_monthly_mileage.json')
+    cmm = JSON.parse(file, symbolize_names: true)[:data][:carMonthlyMileage]
+
+    allow(CarMonthlyMileageService).to receive(:get_car_monthly_mileage_by_id).with(1).and_return(cmm)
+    result = CarMonthlyMileageFacade.car_monthly_mileage_by_id(1)
+    expect(result).to be_a(CarMonthlyMileage)
+  end
 end
