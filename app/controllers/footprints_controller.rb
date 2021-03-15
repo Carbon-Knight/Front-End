@@ -17,8 +17,7 @@ class FootprintsController < ApplicationController
   end
 
   def edit
-    footprint_id = params[:id].to_i
-    @footprint = find_car_monthly_mileage(footprint_id, current_user) # switch to query to get single car monthly mileage
+    @footprint = CarMonthlyMileageFacade.car_monthly_mileage_by_id(params[:id])
   end
 
   def update
@@ -36,12 +35,5 @@ class FootprintsController < ApplicationController
 
   def new_footprint_params
     params.permit(:car_id, :total_mileage, :date => [:month, :year])
-  end
-
-  def find_car_monthly_mileage(id, current_user)
-    car_monthly_mileages = CarMonthlyMileageFacade.get_car_monthly_mileages(current_user)
-    car_monthly_mileages.find do |car_monthly_mileage|
-      car_monthly_mileage.id == id
-    end
   end
 end
