@@ -6,7 +6,7 @@ class CarMonthlyMileageFacade
     end
   end
 
-  def self.update_car_monthly_mileage(car_monthly_mileage, footprint_params)
-    CarMonthlyMileageService.update_car_monthly_mileage(car_monthly_mileage, footprint_params)
+  def self.update_car_monthly_mileage(car_monthly_mileage_id, footprint_params)
+    CarMonthlyMileageService.update_car_monthly_mileage(car_monthly_mileage_id, footprint_params)
   end
 end

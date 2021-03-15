@@ -11,10 +11,10 @@ class CarMonthlyMileageService
     make_request(query)[:data][:fetchAllUserCarMonthlyMileages]
   end
 
-  def self.update_car_monthly_mileage(car_monthly_mileage, footprint_params)
+  def self.update_car_monthly_mileage(car_monthly_mileage_id, footprint_params)
     query = "mutation {
       updateCarMonthlyMileage(input:{
-        id: #{car_monthly_mileage.id},
+        id: #{car_monthly_mileage_id},
         totalMileage: #{footprint_params[:total_mileage].to_i}
         }) {
           footprint {

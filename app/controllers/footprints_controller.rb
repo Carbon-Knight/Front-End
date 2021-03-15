@@ -18,18 +18,16 @@ class FootprintsController < ApplicationController
 
   def edit
     footprint_id = params[:id].to_i
-    @footprint = find_car_monthly_mileage(footprint_id, current_user)
+    @footprint = find_car_monthly_mileage(footprint_id, current_user) # switch to query to get single car monthly mileage
   end
 
   def update
-    car_monthly_mileage = find_car_monthly_mileage(params[:id].to_i, current_user)
-
     if params[:total_mileage] == ''
       flash[:error] = 'You need to fill in the new total mileage'
       redirect_to edit_footprint_path
     else
-      Rails.cache.delete("footprints/#{current_user.id}/#{car_monthly_mileage.year}")
-      CarMonthlyMileageFacade.update_car_monthly_mileage(car_monthly_mileage, new_footprint_params)
+      Rails.cache.delete("footprints/#{current_user.id}/#{params[:year]}")
+      CarMonthlyMileageFacade.update_car_monthly_mileage(params[:id], new_footprint_params)
       redirect_to footprints_path
     end
   end
