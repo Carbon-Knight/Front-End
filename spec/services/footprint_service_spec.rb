@@ -25,6 +25,7 @@ RSpec.describe FootprintService do
       expect(first[:carbonInKg]).to be_a(Float)
     end
   end
+
   describe 'Create new footprint' do
     let(:url) { ENV['HOST_URL']}
 
