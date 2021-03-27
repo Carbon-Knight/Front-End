@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
-gem 'omniauth-google-oauth2'
+gem 'omniauth-google-oauth2', '~> 0.8.1'
 gem 'figaro'
 gem 'chartkick'
 gem 'groupdate'
