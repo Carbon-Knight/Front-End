@@ -20,9 +20,9 @@
     <!-- for adding a demo video
     <a href="Add our video link here">View Demo</a>  · -->
     ·
-    <a href="https://github.com/Carbon-Knight/carbon-knight-back-end/issues">Report Bug</a>
+    <a href="https://github.com/Carbon-Knight/Front-End/issues">Report Bug</a>
     ·
-    <a href="https://github.com/Carbon-Knight/carbon-knight-back-end/issues">Request Feature</a>
+    <a href="https://github.com/Carbon-Knight/Front-End/issues">Request Feature</a>
   </p>
 
 
