@@ -15,6 +15,13 @@ describe 'Footprint edit Page' do
       allow(CarMonthlyMileageService).to receive(:get_car_monthly_mileages).with(@user).and_return(car_monthly_mileages)
       @result = CarMonthlyMileageFacade.get_car_monthly_mileages(@user)
       @first_footprint = @result.first
+
+      file2 = File.read('spec/fixtures/get_single_car_monthly_mileage.json')
+      single_cmm = JSON.parse(file2, symbolize_names: true)[:data][:carMonthlyMileage]
+      allow(CarMonthlyMileageService)
+        .to receive(:get_car_monthly_mileage_by_id)
+        .with(@first_footprint.id.to_s)
+        .and_return(single_cmm)
     end
 
     it 'Clicking edit link will redirect me to an edit page' do

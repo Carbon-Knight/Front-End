@@ -1,0 +1,10 @@
+{
+  "data": {
+    "carMonthlyMileage": {
+      "id":1,
+      "month":"June",
+      "year":2020,
+      "totalMileage":12345 
+    }
+  }
+}

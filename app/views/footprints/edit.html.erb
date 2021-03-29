@@ -30,6 +30,7 @@
           <div class="form-group row justify-content-center">
             <%= submit_tag 'Save', class: "btn btn-success btn-lg" %>
           </div>
+          <%= hidden_field_tag :year, @footprint.year %>
         <% end %>
       </div>
     </div>
