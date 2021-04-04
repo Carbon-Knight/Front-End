@@ -308,18 +308,18 @@ DEPENDENCIES
   bootstrap (~> 4.4.1)
   byebug
   capybara
-  chartkick
+  chartkick (~> 3.4)
   coffee-rails (~> 4.2)
-  dalli
+  dalli (~> 2.7)
   factory_bot_rails
   faker
-  figaro
-  groupdate
+  figaro (~> 1.2)
+  groupdate (~> 5.2)
   jbuilder (~> 2.5)
-  jquery-rails
+  jquery-rails (~> 4.4)
   launchy
   listen (>= 3.0.5, < 3.2)
-  mini_racer
+  mini_racer (~> 0.3)
   omniauth-google-oauth2 (~> 0.8.1)
   pg (>= 0.18, < 2.0)
   pry

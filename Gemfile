@@ -14,7 +14,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'mini_racer', platforms: :ruby
+gem 'mini_racer', '~> 0.3', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -34,12 +34,12 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.4.1'
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.4'
 gem 'omniauth-google-oauth2', '~> 0.8.1'
-gem 'figaro'
-gem 'chartkick'
-gem 'groupdate'
-gem 'dalli'
+gem 'figaro', '~> 1.2'
+gem 'chartkick', '~> 3.4'
+gem 'groupdate', '~> 5.2'
+gem 'dalli', '~> 2.7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
