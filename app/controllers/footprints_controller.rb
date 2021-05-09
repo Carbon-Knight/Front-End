@@ -21,8 +21,8 @@ class FootprintsController < ApplicationController
   end
 
   def update
-    if params[:total_mileage] == ''
-      flash[:error] = 'You need to fill in the new total mileage'
+    if params[:total_mileage] == '' || params[:total_mileage].to_i < 1
+      flash[:error] = 'New total mileage must be present and greater than 1'
       redirect_to edit_footprint_path
     else
       Rails.cache.delete("footprints/#{current_user.id}/#{params[:year]}")
