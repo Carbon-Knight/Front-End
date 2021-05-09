@@ -7,6 +7,12 @@ class CarMonthlyMileageService
                 month
                 year
                 totalMileage
+                car {
+                  id
+                  make
+                  model
+                  year
+                }
             }
           }"
       make_request(query)[:data][:fetchAllUserCarMonthlyMileages]
