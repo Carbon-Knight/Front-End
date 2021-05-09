@@ -12,7 +12,8 @@ class FootprintFacade
   end
 
   def self.get_user_footprint_years(current_user)
-    FootprintService.get_user_footprint_years(current_user)
+    years = FootprintService.get_user_footprint_years(current_user)
+    years << Time.now.year unless years.include?(Time.now.year)
   end
 
   def self.get_total_carbon_for_year(footprints)
