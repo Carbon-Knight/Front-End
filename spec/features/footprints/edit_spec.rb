@@ -68,7 +68,7 @@ describe 'Footprint edit Page' do
       click_button 'Save'
 
       expect(current_path).to eq("/footprints/#{@first_footprint.id}/edit")
-      expect(page).to have_content('You need to fill in the new total mileage')
+      expect(page).to have_content('New total mileage must be present and greater than 1')
     end
   end
 end

@@ -26,7 +26,7 @@
    <% if @footprint_years %>
     <%= form_tag dashboard_path, method: :get do %>
     <div class='form-group row justify-content-center'>
-        <%= select_tag(:footprint_year, options_for_select(@footprint_years, '1')) %>
+        <%= select_tag(:footprint_year, options_for_select(@footprint_years, @year)) %>
         <%= submit_tag 'Select Footprint Year' %>
       </div>
     <% end %>

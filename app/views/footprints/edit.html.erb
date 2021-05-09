@@ -16,6 +16,7 @@
           <%= @footprint.year %>
         </h6>
       </div>
+      <p class='car'><%= @footprint.car&.year %> <%= @footprint.car&.make %> <%= @footprint.car&.model %></p>
       <div class='footprint-mileage'>
         <h6>Previous Mileage: <%= @footprint.total_mileage %></h6>
       </div>
@@ -25,7 +26,7 @@
               <h6><%= label_tag :total_mileage, 'Enter New Total Mileage:' %></h6>
           </div>
           <div class="form-group">
-            <%= text_field_tag :total_mileage, params[:total_mileage] %>
+            <%= number_field_tag :total_mileage, params[:total_mileage], min: 1, required: true %>
           </div>
           <div class="form-group row justify-content-center">
             <%= submit_tag 'Save', class: "btn btn-success btn-lg" %>
