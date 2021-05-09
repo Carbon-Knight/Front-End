@@ -16,6 +16,7 @@
           <%= @footprint.year %>
         </h6>
       </div>
+      <p class='car'><%= @footprint.car&.year %> <%= @footprint.car&.make %> <%= @footprint.car&.model %></p>
       <div class='footprint-mileage'>
         <h6>Previous Mileage: <%= @footprint.total_mileage %></h6>
       </div>
